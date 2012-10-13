@@ -1,89 +1,38 @@
 #home
   h2= t "homepage.tagline", default: "Your personal Inbox assistant"
-  h3= t "homepage.subtagline", default: "Mailst.at helps you fix your email overload problems by enforcing good practices taken from the internet-famous Inbox Zero manifest:"
+  h3= t "homepage.subtagline", default: "Mailst.at helps you fix your email overload problems, infinite-loop searches, forgotten tasks and the consequent waste of time by enforcing good practices taken from the internet-famous Inbox Zero manifest"
 
-  section#problem-focus
-    h3= t "problem.title", default: "What a mess!"
+  section#be
+    h3= t "be.title", default: "We like to help your mail to be..."
+    p= t "manifest.top", default: "You have to <strong>CHOOSE</strong>"
     ul
       li
-        strong Overload
-        = t "problem.overload", default: "Your email is under attack, spammers, colleagues, customers continuosly want to communicate with you, but they seems to be too much for your brain"
+        strong DO
+        = " it right now"
+        = t "manifest.do", default: "you just do something right now, and delete the message"
       li
-        strong Where is it?
-        = t "problem.where", default: "In the jungle of your - even if labelled - thousends of mails, find the right one is hard to accomplish"
+        = "Symply "
+        strong DELETE
+        = " it"
+        = t "manifest.delete", default: "you really don't need to do anything, so just delete the message and focus on productivity"
       li
-        strong Forgotten
-        = t "problem.forgot", default: "You have tons of \"starred\" emails, tons of to-remember-labelled emails in your inbox and you forget what to remember first!"
+        strong DELEGATE
+        = " a task to somebody"
+        = t "manifest.delegate", default: "you're not the right person to do the job: forward the message and then delete it"
       li
-        strong Waste of time
-        = t "problem.time", default: "Deal with all the aboves makes you waste a bunch of damn precius time!"
-  h2= "We're here to help you!"
+        = "You've to "
+        strong DEFERE
+        = t "manifest.defere", default: "if the message requires too much time to be processed, move it into one of your \"to be done\" folders: you'll catch that up later"
+
+  h2= "Start from today! Here's how:"
+
+  h3= t "homepage.report_presentation", default: "Register to Mailstat, specify your inbox and \"to be done\" folders, and start receiving your report with"
+
+  #mail-report
+    = render "report/folder", name: "Get a Pro Tip", text: "Get one of the heroic uber pro tips directly from the Inbox Zero phylosophy archives"
+    = render "report/folder", name: "High priority mails", text: "Have a quick overview of what comunications require your attention (a.k.a. they're so OLD)"
+    = render "report/folder", name: "Track your progress", text: "Have an intuitive progress bar about how much work still remain to be done"
 
   .stepover
     h2.button= "Raise your karma!"
-    h3.button= "Explain me more"
-
-  .clear
-
-  section#not
-    h3= t "not.title", default: "What your mail IS NOT"
-    p= t "not.intro", default: "Your personal Guru says that mail is not..."
-    ul
-      li
-        strong Project management
-        = t "not.project", default: "Drop smt here"
-      li
-        strong Task List
-        = t "not.tasklist", default: "Drop smt here"
-      li
-        strong To-be-read links collector
-        = t "not.pocket", default: "Drop smt here"
-      li
-        strong Kittens photobook
-        = t "not.kittens", default: "Drop smt here"
-
-  section#be
-    h3= t "be.title", default: "What your mail should be"
-    p= t "manifest.top", default: "Inbox is your triage folder: each mail has to be processed and immediately moved away from there with one of the following actions:"
-    ul
-      li
-        strong Do
-        = t "manifest.do", default: "you just do something right now, and delete the message;"
-      li
-        strong Delete
-        = t "manifest.delete", default: "you really don't need to do anything, so just delete the message;"
-      li
-        strong Delegate
-        = t "manifest.delegate", default: "you're not the right person to do the job: forward the message and then delete it;"
-      li
-        strong Defer
-        = t "manifest.defer", default: "if the message requires too much time to be processed, move it into one of your \"to be done\" folders: you'll catch that up later."
-
-  section#zero-inbox-manifest
-    p= t "manifest.top", default: "Inbox is your triage folder: each mail has to be processed and immediately moved away from there with one of the following actions:"
-    ul
-      li
-        strong Do
-        = t "manifest.do", default: "you just do something right now, and delete the message;"
-      li
-        strong Delete
-        = t "manifest.delete", default: "you really don't need to do anything, so just delete the message;"
-      li
-        strong Delegate
-        = t "manifest.delegate", default: "you're not the right person to do the job: forward the message and then delete it;"
-      li
-        strong Defer
-        = t "manifest.defer", default: "if the message requires too much time to be processed, move it into one of your \"to be done\" folders: you'll catch that up later."
-
-  h3= t "homepage.report_presentation", default: "Register to Mailst.at, specify your inbox and \"to be done\" folders, and start the morning by reviewing the progress you made yesterday, and what needs your attention today."
-
-  #mail-report
-    .greetings Good Morning Andrew!
-    h3.mailstat Mailst.at daily report
-
-    p Here you have your daily report, with folders and messages sorted by priority.
-
-    = render "report/folder", name: "To read", old: 141, time: "48h", total: 432, status: "problem"
-    = render "report/folder", name: "To reply", old: 15, time: "3 days", total: 30, status: "warning"
-    = render "report/folder", name: "To do", old: 5, time: "5 days", total: 13, status: "okay"
-
+    h3.button= "Tell me more"
