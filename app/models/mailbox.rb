@@ -2,6 +2,8 @@ class Mailbox < ActiveRecord::Base
   attr_accessible :email, :encryption, :host, :password, :port, :username
   belongs_to :user
   has_many :jobs
+  has_many :folders
+  accepts_nested_attributes_for :folders
 
   validates_presence_of :email, :encryption, :host, :password, :port, :username, :user
   validates_uniqueness_of :email
@@ -33,6 +35,10 @@ class Mailbox < ActiveRecord::Base
 
   def credentials_valid?
     credentials_verified? && latest_succeeded_check_job.result[:valid]
+  end
+
+  def available_imap_folders
+    credentials_verified? && latest_succeeded_check_job.result[:folders]
   end
 
 end

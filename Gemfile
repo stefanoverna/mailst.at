@@ -16,6 +16,7 @@ gem 'copycopter_client'
 gem 'delayed_job_active_record'
 gem 'rabl'
 gem 'typed_serialize'
+gem 'nested_form'
 
 group :assets do
   gem 'sass-rails'

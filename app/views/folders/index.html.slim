@@ -1,0 +1,14 @@
+h1 Edit your folders
+
+= simple_nested_form_for @mailbox do |f|
+
+  = f.fields_for :folders do |ff|
+    = ff.input :imap_name, collection: @mailbox.available_imap_folders, include_blank: false
+    = ff.input :label
+    = ff.input :max_seconds_to_process, collection: Folder.allowed_times_to_process, include_blank: false
+    = ff.link_to_remove "Remove this folder"
+
+  .add
+    = f.link_to_add "Add a Defer folder", :folders
+
+  = f.button :submit
