@@ -2,6 +2,63 @@
   h2= t "homepage.tagline", default: "Your personal Inbox assistant"
   h3= t "homepage.subtagline", default: "Mailst.at helps you fix your email overload problems by enforcing good practices taken from the internet-famous Inbox Zero manifest:"
 
+  section#problem-focus
+    h3= t "problem.title", default: "What a mess!"
+    ul
+      li
+        strong Overload
+        = t "problem.overload", default: "Your email is under attack, spammers, colleagues, customers continuosly want to communicate with you, but they seems to be too much for your brain"
+      li
+        strong Where is it?
+        = t "problem.where", default: "In the jungle of your - even if labelled - thousends of mails, find the right one is hard to accomplish"
+      li
+        strong Forgotten
+        = t "problem.forgot", default: "You have tons of \"starred\" emails, tons of to-remember-labelled emails in your inbox and you forget what to remember first!"
+      li
+        strong Waste of time
+        = t "problem.time", default: "Deal with all the aboves makes you waste a bunch of damn precius time!"
+  h2= "We're here to help you!"
+
+  .stepover
+    h2.button= "Raise your karma!"
+    h3.button= "Explain me more"
+
+  .clear
+
+  section#not
+    h3= t "not.title", default: "What your mail IS NOT"
+    p= t "not.intro", default: "Your personal Guru says that mail is not..."
+    ul
+      li
+        strong Project management
+        = t "not.project", default: "Drop smt here"
+      li
+        strong Task List
+        = t "not.tasklist", default: "Drop smt here"
+      li
+        strong To-be-read links collector
+        = t "not.pocket", default: "Drop smt here"
+      li
+        strong Kittens photobook
+        = t "not.kittens", default: "Drop smt here"
+
+  section#be
+    h3= t "be.title", default: "What your mail should be"
+    p= t "manifest.top", default: "Inbox is your triage folder: each mail has to be processed and immediately moved away from there with one of the following actions:"
+    ul
+      li
+        strong Do
+        = t "manifest.do", default: "you just do something right now, and delete the message;"
+      li
+        strong Delete
+        = t "manifest.delete", default: "you really don't need to do anything, so just delete the message;"
+      li
+        strong Delegate
+        = t "manifest.delegate", default: "you're not the right person to do the job: forward the message and then delete it;"
+      li
+        strong Defer
+        = t "manifest.defer", default: "if the message requires too much time to be processed, move it into one of your \"to be done\" folders: you'll catch that up later."
+
   section#zero-inbox-manifest
     p= t "manifest.top", default: "Inbox is your triage folder: each mail has to be processed and immediately moved away from there with one of the following actions:"
     ul
