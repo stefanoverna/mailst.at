@@ -32,7 +32,7 @@
       .add= f.link_to_add "Add a Defer folder", :folders
 
     = field_set_tag "Morning report" do
-      = f.input :timezone, collection: timezones_collection, as: :grouped_select, group_method: :continent, include_blank: false
+      = f.input :timezone, collection: timezones_collection, as: :grouped_select, group_method: :last, include_blank: false
       = f.input :report_time_hour, collection: hours_collection, include_blank: false
 
   = f.button :submit

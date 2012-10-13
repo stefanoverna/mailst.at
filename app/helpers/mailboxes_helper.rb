@@ -27,7 +27,7 @@ module MailboxesHelper
       end
     end
 
-    time_zones_sorted_by_utc_offset
+    time_zones_sorted_by_utc_offset.group_by(&:continent).sort
   end
 
   def hours_collection
