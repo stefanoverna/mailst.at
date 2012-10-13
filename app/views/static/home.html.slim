@@ -1,32 +1,24 @@
 #home
-  h2 Your personal Inbox assistant
-  h3
-    ' Mailst.at helps you fix your email overload problems by enforcing good practices
-    ' taken from the internet-famous Inbox Zero manifest:
+  h2= t "homepage.tagline", default: "Your personal Inbox assistant"
+  h3= t "homepage.subtagline", default: "Mailst.at helps you fix your email overload problems by enforcing good practices taken from the internet-famous Inbox Zero manifest:"
 
   section#zero-inbox-manifest
-    p
-      ' Inbox is your triage folder: each mail has to be processed and
-      ' immediately moved away from there with one of the following actions:
-
+    p= t "manifest.top", default: "Inbox is your triage folder: each mail has to be processed and immediately moved away from there with one of the following actions:"
     ul
       li
         strong Do
-        | you just do something right now, and delete the message;
+        = t "manifest.do", default: "you just do something right now, and delete the message;"
       li
         strong Delete
-        | you really don't need to do anything, so just delete the message;
+        = t "manifest.delete", default: "you really don't need to do anything, so just delete the message;"
       li
         strong Delegate
-        | you're not the right person to do the job: forward the message and then delete it;
+        = t "manifest.delegate", default: "you're not the right person to do the job: forward the message and then delete it;"
       li
         strong Defer
-        | if the message requires too much time to be processed, move it into one of your "to be done" folders: you'll catch that up later.
+        = t "manifest.defer", default: "if the message requires too much time to be processed, move it into one of your \"to be done\" folders: you'll catch that up later."
 
-  h3
-    ' Register to Mailst.at, specify your inbox and "to be done" folders, and
-    ' start the morning by reviewing the progress you made yesterday, and what
-    ' needs your attention today.
+  h3= t "homepage.report_presentation", default: "Register to Mailst.at, specify your inbox and \"to be done\" folders, and start the morning by reviewing the progress you made yesterday, and what needs your attention today."
 
   #mail-report
     .greetings Good Morning Andrew!

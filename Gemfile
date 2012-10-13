@@ -11,6 +11,9 @@ gem 'inherited_resources'
 gem 'sextant'
 gem 'capistrano'
 gem 'faker'
+gem 'airbrake'
+gem 'copycopter_client'
+gem 'delayed_job_active_record'
 
 group :assets do
   gem 'sass-rails'
