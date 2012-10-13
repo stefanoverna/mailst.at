@@ -1,0 +1,11 @@
+h1 Request new password
+
+= simple_form_for resource, :as => resource_name, :url => password_path(resource_name), :html => {:method => :post} do |f|
+  = field_set_tag "Please, insert your email" do
+    = f.input :email
+  footer
+    = submit_tag "Send me instructions!"
+
+    aside
+      = link_to "Signup", new_registration_url(resource_name)
+      = link_to "Login", new_session_url(resource_name)
