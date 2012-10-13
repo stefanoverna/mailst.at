@@ -10,6 +10,7 @@ gem 'cancan'
 gem 'inherited_resources'
 gem 'sextant'
 gem 'capistrano'
+gem 'faker'
 
 group :assets do
   gem 'sass-rails'

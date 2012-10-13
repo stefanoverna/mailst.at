@@ -1,0 +1,17 @@
+.folder
+  header
+    h5.name= name
+    .status class=status
+      span.old-count
+        =' old
+        span older than #{time}
+      | /
+      span.total-count= total
+  section.mails
+    ul
+      - 5.times do
+        li
+          span.old 4 days old
+          span.title=' quote(Faker::Lorem.sentence(2))
+          ' from
+          span.from= Faker::Name.name

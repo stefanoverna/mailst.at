@@ -34,33 +34,7 @@
 
     p Here you have your daily report, with folders and messages sorted by priority.
 
-    .folder
-      header
-        h5.name To read
-        .status.problem
-          span.old-count
-            ' 141
-            span older than 48h
-          | /
-          span.total-count 431
-
-    .folder
-      header
-        h5.name To reply
-        .status.warning
-          span.old-count
-            ' 24
-            span older than 3 days
-          | /
-          span.total-count 151
-
-    .folder
-      header
-        h5.name To do
-        .status.okay
-          span.old-count
-            ' 11
-            span older than 5 days
-          | /
-          span.total-count 45
+    = render "report/folder", name: "To read", old: 141, time: "48h", total: 432, status: "problem"
+    = render "report/folder", name: "To reply", old: 15, time: "3 days", total: 30, status: "warning"
+    = render "report/folder", name: "To do", old: 5, time: "5 days", total: 13, status: "okay"
 
