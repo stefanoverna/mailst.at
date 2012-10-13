@@ -12,6 +12,7 @@ ActiveAdmin.register Tip do
           commands: [ :bold, :italic, :link, :unordered_list, :ordered_list, :source ],
           blocks: [ :h1, :h2, :h3, :p ]
       }}
+      f.input :citation
     end
     f.buttons
   end
