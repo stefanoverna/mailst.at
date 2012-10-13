@@ -74,9 +74,6 @@ after 'deploy:update_code' do
 
   # Compile Assets
   run "cd #{release_path}; RAILS_ENV=production bundle exec rake assets:precompile"
-  
-  # restart delayed_job
-  run "delayed_job:restart"
 end
 
 # Restart Passenger
@@ -121,4 +118,8 @@ namespace :delayed_job do
     end
 end
 
+# Delayed Job  
+after "deploy:stop",    "delayed_job:stop"  
+after "deploy:start",   "delayed_job:start"  
+after "deploy:restart", "delayed_job:restart" 
 
