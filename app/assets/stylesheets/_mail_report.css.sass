@@ -1,7 +1,7 @@
 #mail-report
   border: 1px solid #ccc
   padding: 40px
-  width: 530px
+  width: 600px
   margin: 20px auto
   +box-shadow(rgba(black, 0.3) 0px 4px 10px)
   +nested-reset
@@ -21,51 +21,31 @@
     margin-bottom: 20px
 
   .folder
-    margin-top: 25px
+    width: 600px
 
     header
-      font-size: 20px
-      line-height: 25px
       margin-bottom: 15px
-      color: #333
-      +clearfix
-
-      h5
-        float: left
-
-      .status
-        float: right
-
-        .old-count
-          font-weight: bold
-          padding-right: 5px
-
-          span
-            font-size: 13px
-
-        .total-count
-          padding-left: 5px
-
-        &.okay
-          color: darken(#7d9d2f, 20%)
-          .old-count
-            color: #7d9d2f
-
-        &.warning
-          color: darken(#ff8f30, 20%)
-          .old-count
-            color: #ff8f30
-
-        &.problem
-          color: darken(#ff0029, 20%)
-          .old-count
-            color: #ff0029
+      width: 600px
+      height: 220px
+      padding: 5px
+      position: relative
+      h2
+        font-size: 24px
+        padding: 5px 0
+        font-weight: bold
+        margin-bottom: 10px
 
     .mails
-      li
-        margin-bottom: 5px
-        .title, .from
-          font-weight: bold
+      font-size: 20px
+      width: 230px
+      position: absolute
+      left: 0
+      padding: 5px
+      text-align: justify
 
-
-
+    .image
+      width: 350px
+      height: 200px
+      position: absolute
+      right: 0
+      background: url("https://lorempixel.com/350/200")
