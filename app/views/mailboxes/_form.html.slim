@@ -1,9 +1,37 @@
-= simple_form_for mailbox do |f|
+= simple_nested_form_for mailbox do |f|
+
   = f.input :email
+
   = field_set_tag "Connection params" do
     = f.input :host
     = f.input :username
     = f.input :password
     = f.input :port
     = f.input :encryption, as: :select, collection: Mailbox.allowed_encryptions, include_blank: false
+
+  - if @mailbox.credentials_valid?
+
+    - @mailbox.build_inbox_folder_if_missing
+
+    = field_set_tag "Inbox folder" do
+      = f.simple_fields_for :folders, @mailbox.inbox_folder do |ff|
+        = ff.input :imap_name, collection: ff.object.available_imap_folders(@mailbox)
+        = ff.input :max_seconds_to_process, as: :hidden
+        = ff.input :is_inbox, as: :hidden
+
+    = field_set_tag "Defer folders" do
+      = f.simple_fields_for :folders, @mailbox.defer_folders do |ff|
+        = ff.input :imap_name, collection: ff.object.available_imap_folders(@mailbox), include_blank: false
+        = ff.input :label
+        = ff.input :max_seconds_to_process, collection: Folder.allowed_times_to_process, include_blank: false
+        = ff.link_to_remove "Remove this folder"
+
+    .add
+      = f.link_to_add "Add a Defer folder", :folders
+
+    = field_set_tag "Morning report" do
+      = f.input :timezone, collection: timezones_collection, as: :select
+      = f.input :report_time_hour
+      = f.input :report_time_minute
+
   = f.button :submit

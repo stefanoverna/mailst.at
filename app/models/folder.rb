@@ -1,7 +1,9 @@
 class Folder < ActiveRecord::Base
-  attr_accessible :imap_name, :label, :mailbox_id, :max_seconds_to_process
+  attr_accessible :imap_name, :label, :mailbox_id, :max_seconds_to_process, :is_inbox
   belongs_to :mailbox
   validates_presence_of :mailbox, :imap_name, :max_seconds_to_process
+  validates_uniqueness_of :is_inbox, scope: [ :mailbox_id ]
+  validates_uniqueness_of :imap_name, scope: [ :mailbox_id ]
 
   class TimeToProcess < Struct.new(:title, :id)
   end
@@ -14,5 +16,11 @@ class Folder < ActiveRecord::Base
       TimeToProcess.new("4 days", 4.days),
       TimeToProcess.new("5 days", 5.days)
     ]
+  end
+
+  def available_imap_folders(mailbox)
+    folders = mailbox.available_imap_folders
+    folders << imap_name unless new_record?
+    folders
   end
 end

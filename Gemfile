@@ -17,6 +17,7 @@ gem 'delayed_job_active_record'
 gem 'rabl'
 gem 'typed_serialize'
 gem 'nested_form'
+gem 'tzinfo'
 gem 'daemons'
 
 group :assets do
