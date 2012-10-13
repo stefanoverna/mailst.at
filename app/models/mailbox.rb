@@ -1,14 +1,12 @@
 class Mailbox < ActiveRecord::Base
-  attr_accessible :email, :encryption, :host, :password, :port, :username, :folders_attributes, :timezone, :report_time_hour
+  attr_accessible :label, :encryption, :host, :password, :port, :username, :folders_attributes, :timezone, :report_time_hour
   belongs_to :user
   has_many :jobs
   has_many :folders
   accepts_nested_attributes_for :folders
 
-  validates_presence_of :email, :encryption, :host, :password, :port, :username, :user
-  validates_uniqueness_of :email
+  validates_presence_of :label, :encryption, :host, :password, :port, :username, :user
   validates_numericality_of :port
-  validates_format_of :email, :with => /^.+@.+$/i
 
   validates_inclusion_of :timezone, in: TZInfo::Timezone.all_country_zone_identifiers
   validates_presence_of :report_time_hour, if: :credentials_valid?

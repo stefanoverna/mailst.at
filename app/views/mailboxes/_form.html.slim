@@ -27,8 +27,7 @@
         = ff.input :max_seconds_to_process, collection: Folder.allowed_times_to_process, include_blank: false
         = ff.link_to_remove "Remove this folder"
 
-    .add
-      = f.link_to_add "Add a Defer folder", :folders
+      .add= f.link_to_add "Add a Defer folder", :folders
 
     = field_set_tag "Morning report" do
       = f.input :timezone, collection: timezones_collection, include_blank: false
