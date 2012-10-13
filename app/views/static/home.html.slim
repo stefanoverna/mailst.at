@@ -1,18 +1,66 @@
-h1 Mailst.at
-h2 Your personal Inbox assistant
+#home
+  h2 Your personal Inbox assistant
+  h3
+    ' Mailst.at helps you fix your email overload problems by enforcing good practices
+    ' taken from the internet-famous Inbox Zero manifest:
 
-h3 Mailst.at helps you fix your email overload problems by enforcing good practices taken from the internet-famous Inbox Zero manifest.
+  section#zero-inbox-manifest
+    p
+      ' Inbox is your triage folder: each mail has to be processed and
+      ' immediately moved away from there with one of the following actions:
 
-p Inbox is your triage folder: each mail has to be processed and immediately moved away from there with one of the following actions:
+    ul
+      li
+        strong Do
+        | you just do something right now, and delete the message;
+      li
+        strong Delete
+        | you really don't need to do anything, so just delete the message;
+      li
+        strong Delegate
+        | you're not the right person to do the job: forward the message and then delete it;
+      li
+        strong Defer
+        | if the message requires too much time to be processed, move it into one of your "to be done" folders: you'll catch that up later.
 
-ul
-  li Do: you just do something right now, and delete the message;
-  li Delete: you really don't need to do anything, so just delete the message;
-  li Delegate: you're not the right person to do the job: forward the message and then delete it;
-  li Defer: if the message requires too much time to be processed, move it into one of your "to be done" folders: you'll catch that up later.
+  h3
+    ' Register to Mailst.at, specify your inbox and "to be done" folders, and
+    ' start the morning by reviewing the progress you made yesterday, and what
+    ' needs your attention today.
 
-p Register to Mailst.at, specify your inbox and "to be done" folders, aart the morning by reviewing the progress you made yesterday, and what needs your attention today.
+  #mail-report
+    .greetings Good Morning Andrew!
+    h3.mailstat Mailst.at daily report
 
+    p Here you have your daily report, with folders and messages sorted by priority.
 
+    .folder
+      header
+        h5.name To read
+        .status.problem
+          span.old-count
+            ' 141
+            span older than 48h
+          | /
+          span.total-count 431
 
-p The Daily Mail Recap hits your inbox a the start of each day.
+    .folder
+      header
+        h5.name To reply
+        .status.warning
+          span.old-count
+            ' 24
+            span older than 3 days
+          | /
+          span.total-count 151
+
+    .folder
+      header
+        h5.name To do
+        .status.okay
+          span.old-count
+            ' 11
+            span older than 5 days
+          | /
+          span.total-count 45
+
