@@ -7,7 +7,12 @@ ActiveAdmin.register Tip do
   form do |f|
     f.inputs "Details" do
       f.input :title
-      f.input :description
+      f.input :description, as: :wysihtml5, input_html: {
+        toolbar: {
+          commands: [ :bold, :italic, :link, :unordered_list, :ordered_list, :source ],
+          blocks: [ :h1, :h2, :h3, :p ]
+      }}
+      f.input :citation
     end
     f.buttons
   end
