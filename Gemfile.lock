@@ -59,6 +59,7 @@ GEM
     copycopter_client (2.0.1)
       i18n (>= 0.5.0)
       json
+    daemons (1.1.9)
     delayed_job (3.0.3)
       activesupport (~> 3.0)
     delayed_job_active_record (0.3.2)
@@ -190,6 +191,7 @@ DEPENDENCIES
   coffee-rails
   compass-rails
   copycopter_client
+  daemons
   delayed_job_active_record
   devise
   faker

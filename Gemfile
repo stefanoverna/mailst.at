@@ -18,6 +18,7 @@ gem 'rabl'
 gem 'typed_serialize'
 gem 'nested_form'
 gem 'tzinfo'
+gem 'daemons'
 
 group :assets do
   gem 'sass-rails'
