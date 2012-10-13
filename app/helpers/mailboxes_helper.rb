@@ -3,6 +3,9 @@ module MailboxesHelper
   class TimeZone < Struct.new(:title, :id)
   end
 
+  class Hour < Struct.new(:title, :id)
+  end
+
   def timezones_collection
     time_zones_by_utc_offset = {}
     TZInfo::Timezone.all_country_zones.each do |time_zone|
@@ -24,6 +27,13 @@ module MailboxesHelper
     end
 
     time_zones_sorted_by_utc_offset
+  end
+
+  def hours_collection
+    24.times.map do |hour|
+      time = Time.utc(2010, 1, 1, hour)
+      Hour.new(l(time, format: "%H:%M"), hour)
+    end
   end
 
 end

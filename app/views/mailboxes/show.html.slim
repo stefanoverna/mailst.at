@@ -1,7 +1,7 @@
 - if @mailbox.credentials_verified?
   - if @mailbox.credentials_valid?
     h1= t "mailbox.credentials_verification.success", default: "Credentials valid!"
-    = link_to t("mailbox.credentials_verification.edit_folders", default: "Setup your folders"), mailbox_folders_path(@mailbox)
+    = link_to t("mailbox.credentials_verification.edit_folders", default: "Setup your folders"), edit_mailbox_path(@mailbox)
   - else
     h1= t "mailbox.credentials_verification.failure", default: "Credentials invalid!"
     = link_to t("mailbox.credentials_verification.change_credentials", default: "Change credentials"), edit_mailbox_path(@mailbox)

@@ -1,5 +1,5 @@
 class Mailbox < ActiveRecord::Base
-  attr_accessible :email, :encryption, :host, :password, :port, :username, :folders_attributes
+  attr_accessible :email, :encryption, :host, :password, :port, :username, :folders_attributes, :timezone, :report_time_hour
   belongs_to :user
   has_many :jobs
   has_many :folders
@@ -10,9 +10,8 @@ class Mailbox < ActiveRecord::Base
   validates_numericality_of :port
   validates_format_of :email, :with => /^.+@.+$/i
 
-  validates_inclusion_of :time_zone, in: TZInfo::Timezone.all_country_zone_identifiers
+  validates_inclusion_of :timezone, in: TZInfo::Timezone.all_country_zone_identifiers
   validates_presence_of :report_time_hour, if: :credentials_valid?
-  validates_presence_of :report_time_minute, if: :credentials_valid?
 
   class Encryption < Struct.new(:title, :id)
   end
