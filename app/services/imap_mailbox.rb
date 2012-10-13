@@ -22,6 +22,33 @@ class ImapMailbox
                            end
   end
 
+  def connected?
+    return @imap_client.present?
+  end
+
+  def folder_mail_summary(folder_name, older_than_time)
+    return {} unless connected?
+    older_than_time = older_than_time.utc
+
+    begin
+      result = {}
+
+      @imap_client.examine(folder_name)
+      result[:messages] = imap.status(folder.name, ["MESSAGES"])["MESSAGES"]
+
+      email_ids = @imap_client.search("ALL").take 100
+      result[:old] = email_ids.select do |email_id|
+        email = @imap_client.fetch(email_id, "BODY[HEADER.FIELDS (Date)]")
+        email_time = Time.parse(email.first.attr.values.first).utc
+        email_time < older_than_time
+      end.count
+
+      result
+    rescue
+      {}
+    end
+  end
+
   def credentials_valid?
     @imap_client = Net::IMAP.new(params[:host], params[:port], params[:encryption], nil, false)
     @imap_client.login(params[:username], params[:password])
@@ -31,10 +58,15 @@ class ImapMailbox
   end
 
   def folders
-    return [] unless @imap_client
+    return [] unless connected?
 
-    @imap_client.list("", "*").select do |folder|
-      !folder.attr.include? :Noselect
-    end.map(&:name)
+    begin
+      @imap_client.list("", "*").select do |folder|
+        !folder.attr.include? :Noselect
+      end.map(&:name)
+    rescue
+      []
+    end
   end
+
 end
