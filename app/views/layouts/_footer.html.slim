@@ -1,2 +1,3 @@
 footer#site-footer
-  = link_to "Routes", rails_routes_path
+  - if Rails.env.development?
+    = link_to "Routes", rails_routes_path

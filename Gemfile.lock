@@ -108,6 +108,9 @@ GEM
       net-ssh (>= 1.99.1)
     orm_adapter (0.4.0)
     polyglot (0.3.3)
+    rabl (0.7.2)
+      activesupport (>= 2.3.14)
+      multi_json (~> 1.0)
     rack (1.4.1)
     rack-cache (1.2)
       rack (>= 0.4)
@@ -167,6 +170,8 @@ GEM
     treetop (1.4.11)
       polyglot
       polyglot (>= 0.3.1)
+    typed_serialize (1.0.0)
+      activerecord
     tzinfo (0.3.33)
     uglifier (1.3.0)
       execjs (>= 0.3.0)
@@ -190,6 +195,7 @@ DEPENDENCIES
   inherited_resources
   jquery-rails
   mysql2
+  rabl
   rails (= 3.2.8)
   responders
   sass-rails
@@ -198,4 +204,5 @@ DEPENDENCIES
   slim-rails
   sqlite3
   therubyracer
+  typed_serialize
   uglifier

@@ -1,0 +1,8 @@
+- if @mailbox.credentials_verified?
+  - if @mailbox.credentials_valid?
+    h1 Credentials valid
+  - else
+    h2 Credentials invalid
+- else
+  p.loading data-check-mailbox-verification=@mailbox.id
+
