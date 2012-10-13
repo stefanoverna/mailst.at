@@ -11,6 +11,8 @@ class Mailbox < ActiveRecord::Base
   validates_inclusion_of :timezone, in: TZInfo::Timezone.all_country_zone_identifiers
   validates_presence_of :report_time_hour, if: :credentials_valid?
 
+  validates :folders, :folder_uniqueness => true
+
   class Encryption < Struct.new(:title, :id)
   end
 
@@ -29,7 +31,7 @@ class Mailbox < ActiveRecord::Base
   end
 
   def defer_folders
-    folders.detect do |folder|
+    folders.select do |folder|
       !folder.is_inbox
     end
   end
@@ -47,21 +49,21 @@ class Mailbox < ActiveRecord::Base
     CheckMailboxJob.where(mailbox_id: self)
   end
 
-  def latest_succeeded_check_job
-    check_jobs.succeeded.first
+  def latest_completed_check_job
+    check_jobs.completed.first
   end
 
   def credentials_verified?
-    !!latest_succeeded_check_job
+    !!latest_completed_check_job
   end
 
   def credentials_valid?
-    credentials_verified? && latest_succeeded_check_job.result[:valid]
+    credentials_verified? && latest_completed_check_job.result[:valid]
   end
 
   def available_imap_folders
-    if credentials_verified?
-      all_folders = latest_succeeded_check_job.result[:folders]
+    if credentials_valid?
+      all_folders = latest_completed_check_job.result[:folders]
       all_folders.compact - self.folders.map(&:imap_name).compact
     else
       []

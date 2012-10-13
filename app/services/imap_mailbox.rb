@@ -7,7 +7,7 @@ class ImapMailbox
   def initialize(params = {})
     @params = params.symbolize_keys!
 
-    [:email, :host, :port, :encryption, :username, :password].each do |param|
+    [:host, :port, :encryption, :username, :password].each do |param|
       raise ArgumentError, "#{param} is required" unless @params.include? param
     end
 

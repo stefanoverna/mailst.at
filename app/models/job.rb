@@ -11,6 +11,7 @@ class Job < ActiveRecord::Base
   scope :pending, where(:status => "pending")
   scope :succeeded, where(:status => "success")
   scope :failed, where(:status => "failure")
+  scope :completed, where("status = ? OR status = ?", "success", "failure")
 
   default_scope order("updated_at DESC")
 

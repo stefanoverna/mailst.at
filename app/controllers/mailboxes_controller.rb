@@ -19,7 +19,7 @@ class MailboxesController < ApplicationController
     @mailbox = Mailbox.find(params[:id])
     @mailbox.update_attributes(params[:mailbox])
     if @mailbox.valid?
-      @mailbox.latest_succeeded_check_job.try(:destroy)
+      @mailbox.latest_completed_check_job.try(:destroy)
       CheckMailboxJob.create(@mailbox)
     end
     respond_with @mailbox
