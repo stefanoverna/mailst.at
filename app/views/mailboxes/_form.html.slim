@@ -1,0 +1,9 @@
+= simple_form_for mailbox do |f|
+  = f.input :email
+  = field_set_tag "Connection params" do
+    = f.input :host
+    = f.input :username
+    = f.input :password
+    = f.input :port
+    = f.input :encryption, as: :select, collection: Mailbox.allowed_encryptions, include_blank: false
+  = f.button :submit
