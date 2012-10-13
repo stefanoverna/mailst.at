@@ -1,5 +1,5 @@
 class Mailbox < ActiveRecord::Base
-  attr_accessible :email, :encryption, :host, :password, :port, :username
+  attr_accessible :email, :encryption, :host, :password, :port, :username, :folders_attributes
   belongs_to :user
   has_many :jobs
   has_many :folders
@@ -10,6 +10,10 @@ class Mailbox < ActiveRecord::Base
   validates_numericality_of :port
   validates_format_of :email, :with => /^.+@.+$/i
 
+  validates_inclusion_of :time_zone, in: TZInfo::Timezone.all_country_zone_identifiers
+  validates_presence_of :report_time_hour, if: :credentials_valid?
+  validates_presence_of :report_time_minute, if: :credentials_valid?
+
   class Encryption < Struct.new(:title, :id)
   end
 
@@ -19,6 +23,27 @@ class Mailbox < ActiveRecord::Base
       Encryption.new("TSL", :tsl),
       Encryption.new("None", :none)
     ]
+  end
+
+  def inbox_folder
+    folders.detect do |folder|
+      folder.is_inbox
+    end
+  end
+
+  def defer_folders
+    folders.detect do |folder|
+      !folder.is_inbox
+    end
+  end
+
+  def build_inbox_folder_if_missing
+    unless inbox_folder.present?
+      folders.build(
+        is_inbox: true,
+        max_seconds_to_process: 24.hours
+      )
+    end
   end
 
   def check_jobs
@@ -38,7 +63,12 @@ class Mailbox < ActiveRecord::Base
   end
 
   def available_imap_folders
-    credentials_verified? && latest_succeeded_check_job.result[:folders]
+    if credentials_verified?
+      all_folders = latest_succeeded_check_job.result[:folders]
+      all_folders.compact - self.folders.map(&:imap_name).compact
+    else
+      []
+    end
   end
 
 end

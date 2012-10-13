@@ -207,4 +207,5 @@ DEPENDENCIES
   sqlite3
   therubyracer
   typed_serialize
+  tzinfo
   uglifier
