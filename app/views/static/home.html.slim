@@ -2,18 +2,19 @@
   h2= t "homepage.tagline", default: "Your personal Inbox assistant"
   h3= t "homepage.subtagline", default: "Mailst.at helps you fix your email overload problems, infinite-loop searches, forgotten tasks and the consequent waste of time by enforcing good practices taken from the internet-famous Inbox Zero manifest"
 
-  section#be
-    h3= t "be.title", default: "We like to help your mail to be..."
-    p= t "manifest.top", default: "You have to <strong>CHOOSE</strong>"
-    ul
-      li
-        p= t "manifest.do", default: "DO it right now you just do something right now, and delete the message"
-      li
-        p= t "manifest.delete", default: "Simply DELETE it you really don't need to do anything, so just delete the message and focus on productivity"
-      li
-        p= t "manifest.delegate", default: "DELEGATE a task to somebody you're not the right person to do the job: forward the message and then delete it"
-      li
-        = t "manifest.defere", default: "You've to DEFERE if the message requires too much time to be processed, move it into one of your \"to be done\" folders: you'll catch that up later"
+  /
+    section#be
+      h3= t "be.title", default: "We like to help your mail to be..."
+      p= t "manifest.top", default: "You have to <strong>CHOOSE</strong>"
+      ul
+        li
+	  p= t "manifest.do", default: "DO it right now you just do something right now, and delete the message"
+        li
+	  p= t "manifest.delete", default: "Simply DELETE it you really don't need to do anything, so just delete the message and focus on productivity"
+        li
+	  p= t "manifest.delegate", default: "DELEGATE a task to somebody you're not the right person to do the job: forward the message and then delete it"
+        li
+	  = t "manifest.defere", default: "You've to DEFERE if the message requires too much time to be processed, move it into one of your \"to be done\" folders: you'll catch that up later"
 
   h2= "Start from today! Here's how:"
 
@@ -21,9 +22,8 @@
 
   #mail-report
     = render "report/folder", name: "Get a Pro Tip", text: "Get one of the heroic uber pro tips directly from the Inbox Zero phylosophy archives"
-    = render "report/folder", name: "High priority mails", text: "Have a quick overview of what comunications require your attention (a.k.a. they're so OLD)"
-    = render "report/folder", name: "Track your progress", text: "Have an intuitive progress bar about how much work still remain to be done"
+    = render "report/folder", name: "High priority mails", text: "Have a quick overview of what communications require your attention (a.k.a. they're so OLD)"
+    = render "report/folder", name: "Track your progress", text: "Get a daily infographic on how much work still remains to be done"
 
   .stepover
     h2.button= "Raise your karma!"
-    h3.button= "Tell me more"
