@@ -20,6 +20,7 @@ gem 'nested_form'
 gem 'tzinfo'
 gem 'daemons'
 gem 'activeadmin'
+gem 'activeadmin-wysihtml5', github: 'stefanoverna/activeadmin-wysihtml5'
 
 group :assets do
   gem 'sass-rails'
