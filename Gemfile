@@ -19,6 +19,7 @@ gem 'typed_serialize'
 gem 'nested_form'
 gem 'tzinfo'
 gem 'daemons'
+gem 'activeadmin'
 
 group :assets do
   gem 'sass-rails'
