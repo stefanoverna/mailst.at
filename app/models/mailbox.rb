@@ -8,7 +8,7 @@ class Mailbox < ActiveRecord::Base
   validates_presence_of :label, :encryption, :host, :password, :port, :username, :user
   validates_numericality_of :port
 
-  validates_inclusion_of :timezone, in: TZInfo::Timezone.all_country_zone_identifiers
+  validates_inclusion_of :timezone, in: TZInfo::Timezone.all_country_zone_identifiers, if: :credentials_valid?
   validates_presence_of :report_time_hour, if: :credentials_valid?
 
   validates :folders, :folder_uniqueness => true
