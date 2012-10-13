@@ -1,3 +1,10 @@
+GIT
+  remote: git://github.com/stefanoverna/activeadmin-wysihtml5.git
+  revision: 69d4043187b512c251cd3a94db12ed127937b3bd
+  specs:
+    activeadmin-wysihtml5 (0.0.2)
+      activeadmin
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -215,6 +222,7 @@ PLATFORMS
 
 DEPENDENCIES
   activeadmin
+  activeadmin-wysihtml5!
   airbrake
   cancan
   capistrano
