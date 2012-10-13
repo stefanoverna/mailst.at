@@ -15,6 +15,16 @@ class MailboxesController < ApplicationController
     respond_with @mailbox
   end
 
+  def update
+    @mailbox = Mailbox.find(params[:id])
+    @mailbox.update_attributes(params[:mailbox])
+    if @mailbox.valid?
+      @mailbox.latest_succeeded_check_job.try(:destroy)
+      CheckMailboxJob.create(@mailbox)
+    end
+    respond_with @mailbox
+  end
+
   protected
 
   def begin_of_association_chain

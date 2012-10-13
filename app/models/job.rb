@@ -73,6 +73,7 @@ class Job < ActiveRecord::Base
   end
 
   def log(text)
+    puts text
     if text.lines.count == 1
       self.log_lines << "#{Time.now} -- #{text}"
     else

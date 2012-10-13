@@ -1,8 +1,10 @@
 - if @mailbox.credentials_verified?
   - if @mailbox.credentials_valid?
     h1 Credentials valid
+    // SELEZIONE DELLE CARTELLE
   - else
-    h2 Credentials invalid
+    h1 Credentials invalid
+    = link_to "Change credentials", edit_mailbox_path(@mailbox)
 - else
   p.loading data-check-mailbox-verification=@mailbox.id
 
