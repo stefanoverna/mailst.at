@@ -26,22 +26,28 @@ class ImapMailbox
     return @imap_client.present?
   end
 
-  def folder_mail_summary(folder_name, older_than_time)
+  def folder_mail_summary(folder_name, older_than_time, options = {max_search: 100, max_fetch: 3})
     return {} unless connected?
-    older_than_time = older_than_time.utc
 
     begin
-      result = {}
+      result = {messages_count: 0, old_messages_count: 0, old_mails: []}
 
       @imap_client.examine(folder_name)
-      result[:messages] = imap.status(folder.name, ["MESSAGES"])["MESSAGES"]
+      result[:messages_count] = @imap_client.status(folder_name, ["MESSAGES"])["MESSAGES"]
 
-      email_ids = @imap_client.search("ALL").take 100
-      result[:old] = email_ids.select do |email_id|
-        email = @imap_client.fetch(email_id, "BODY[HEADER.FIELDS (Date)]")
-        email_time = Time.parse(email.first.attr.values.first).utc
-        email_time < older_than_time
-      end.count
+      email_ids = @imap_client.search("ALL")
+
+      oldest_ids = email_ids.take(options[:max_search]).select do |email_id|
+        header = @imap_client.fetch(email_id, "BODY[HEADER.FIELDS (From To Subject Date)]")
+        mail = Mail.read_from_string(header.first.attr.values.first)
+        mail.date.utc < older_than_time.utc
+      end
+      result[:old_messages_count] = oldest_ids.count
+
+      result[:old_mails] = oldest_ids.take(options[:max_fetch]).map do |email_id|
+        header = @imap_client.fetch(email_id, "BODY[HEADER.FIELDS (From To Subject Date)]")
+        Mail.read_from_string(header.first.attr.values.first)
+      end
 
       result
     rescue
