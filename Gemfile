@@ -9,6 +9,7 @@ gem 'responders'
 gem 'cancan'
 gem 'inherited_resources'
 gem 'sextant'
+gem 'capistrano'
 
 group :assets do
   gem 'sass-rails'
@@ -18,3 +19,8 @@ group :assets do
 end
 
 gem 'jquery-rails'
+
+group :production do
+  gem 'mysql2'
+  gem 'therubyracer'
+end
