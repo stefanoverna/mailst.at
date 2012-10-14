@@ -1,5 +1,5 @@
 class Mailbox < ActiveRecord::Base
-  attr_accessible :label, :encryption, :host, :password, :port, :username, :folders_attributes, :timezone, :report_time_hour
+  attr_accessible :label, :encryption, :host, :password, :port, :username, :folders_attributes, :timezone, :report_time_hour, :seconds_between_reports
   belongs_to :user
   has_many :jobs, dependent: :destroy
   has_many :folders, dependent: :destroy
@@ -10,6 +10,7 @@ class Mailbox < ActiveRecord::Base
 
   validates_inclusion_of :timezone, in: TZInfo::Timezone.all_country_zone_identifiers, if: :credentials_valid?
   validates_presence_of :report_time_hour, if: :credentials_valid?
+  validates_presence_of :seconds_between_reports, if: :credentials_valid?
 
   validates :folders, :folder_uniqueness => true
 
@@ -87,7 +88,7 @@ class Mailbox < ActiveRecord::Base
         "last_report_sent_at IS NULL OR (timezone = ? AND report_time_hour <= ? AND last_report_sent_at < ?)",
         timezone_identifier,
         now_local.hour,
-        24.hours.ago
+        max_seconds_to_process.ago
       )
     end
     mailboxes

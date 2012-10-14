@@ -13,6 +13,8 @@ en:
     labels:
       mailbox:
         label: "Name"
+        seconds_between_reports: "Send every"
+        report_time_hour: "Send at"
         folders:
           imap_name: "IMAP Folder"
           max_seconds_to_process: "Max. defer time"
