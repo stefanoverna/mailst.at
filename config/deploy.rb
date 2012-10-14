@@ -1,4 +1,5 @@
 require 'bundler/capistrano'
+require 'whenever/capistrano'
 
 # This capistrano deployment recipe is made to work with the optional
 # StackScript provided to all Rails Rumble teams in their Linode dashboard.
