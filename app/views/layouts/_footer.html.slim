@@ -1,10 +1,8 @@
 footer#site-footer
   .content
-    - if Rails.env.development?
-      .routes
-        = link_to "Routes", rails_routes_path
-    
-    = "Made by "
-    a href="http://welaika.com" weLaika
-    = " for "
-    a href="http://railsrumble.com/entries/32-welaika-2" RailsRumble 2012
+    .copy
+      = "Made by "
+      a href="http://welaika.com" weLaika
+      = " for "
+      a href="http://railsrumble.com/entries/32-welaika-2" RailsRumble 2012
+    .stuff

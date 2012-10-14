@@ -22,6 +22,6 @@
   aside
     - tip = Tip.random
     - if tip.present?
-      h3= tip.title
-      .description= tip.description
-      .citation= tip.citation
+      .block
+        h3 Pro-tip of the day: "#{tip.title}"
+        .description= tip.description
