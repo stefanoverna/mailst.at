@@ -5,23 +5,50 @@ sass:
   $grey: #CDD0CB
   $darkgrey: #8B8683
   $azure: #26ADE4
+  $light-azure: #d5e6ed
 
   #content
+    font-family: 'Trebuchet MS', Tahoma, Arial
     width: 740px
     margin: 0 auto
 
-    #mailbox-report
-      line-height: 35px
-      margin-bottom: 30px
+    h1
+      margin-bottom: 0
+      font-size: 50px
       border-bottom: 2px solid #ccc
       color: #555
-      font-size: 15px
 
-      h3.welcome
-        margin-bottom: 0
-        font-size: 20px
+    #mailbox-report
+      table.header
+        width: 100%
+        border-bottom: 2px solid #ccc
 
-      .timestamp
+        .welcome
+          text-align: left
+
+          h3
+            margin-bottom: 0
+            font-size: 20px
+            color: #555
+
+        .timestamp
+          text-align: right
+          font-size: 14px
+          font-weight: bold
+
+      .link-to-site
+        margin-top: 10px
+
+        a
+          text-align: center
+          display: block
+          width: 300px
+          margin: 0 auto
+          padding: 8px 20px
+          color: white
+          background-color: $green
+          border-bottom: 2px solid darken($green, 20%)
+          text-decoration: none
 
       .at-a-glance
         margin-bottom: 40px
@@ -31,49 +58,49 @@ sass:
           font-weight: 300
           line-height: 35px
           border-bottom: 2px solid #ccc
+          color: #555
 
-        tr
-          margin-bottom: 5px
-          background-color: #eee
-          font-size: 20px
-          line-height: 40px
+        table
+          width: 100%
 
-          .label
-            padding-left: 15px
+          tr
+            margin-bottom: 5px
+            background-color: #eee
+            font-size: 20px
+            line-height: 40px
 
-          .total, .overdue
-            color: white
+            .label
+              text-align: left
+              padding-left: 15px
+              width: 300px
 
-          .overdue
-            width: 54px
-            padding-left: 20px
+            .total, .overdue
+              color: white
+              text-align: center
 
-          .total
-            width: 60px
-            padding-right: 20px
-            color: rgba(white, 0.8)
-
-          &.success
-            .total
-              background-color: $green
             .overdue
-              background-color: $green
+              width: 54px
 
-          &.failure
             .total
-              background-color: $red
-            .overdue
-              background-color: $red
+              width: 60px
 
-          &.warning
-            .total
-              background-color: $yellow
-            .overdue
-              background-color: $yellow
+            &.success
+              .total
+                background-color: $green
+              .overdue
+                background-color: $green
 
-          td
-            text-align: center
+            &.failure
+              .total
+                background-color: $red
+              .overdue
+                background-color: $red
 
+            &.warning
+              .total
+                background-color: $yellow
+              .overdue
+                background-color: $yellow
 
 
       .tip-of-the-day
@@ -103,23 +130,40 @@ sass:
         table
           width: 100%
 
-          td
-            border-bottom: 1px solid #ccc
-            padding: 7px 9px
-            vertical-align: top
+          tr
+            margin-bottom: 5px
+            background-color: $light-azure
 
-            &.old
-              width: 130px
+            td
+              border-bottom: 1px solid darken($azure, 15%)
+              padding: 7px 9px
+              vertical-align: top
+
+              &.old
+                width: 130px
+                text-align: center
+
+              &.from
+                text-align: center
+
+    #footer
+      font-size: 12px
+      color: #333
+      margin: 0 auto
 
 #content
   h1 #{@mailbox.label} Report
 
   #mailbox-report
-    h3.welcome Good morning, #{@mailbox.user.first_name}!
-    p this summary has been taken at:
-    .timestamp= l(@mailbox.last_mailbox_fetch_at, format: :short)
+    table.header
+      tr
+        td.welcome
+          h3 Good morning, #{@mailbox.user.first_name}!
+        td.timestamp
+          '✉
+          =l(@mailbox.last_mailbox_fetch_at, format: :short)
 
-    .link-to-site= link_to "You can read this email on Mailstat website too", mailbox_url(@mailbox, :protocol => 'https')
+    .link-to-site= link_to "Read this email on our website", mailbox_url(@mailbox, :protocol => 'https')
 
     .block.at-a-glance
       h3 Your mailbox, at a glance
@@ -136,15 +180,23 @@ sass:
       .block.tip-of-the-day
         h4 Pro-tip of the day
         h3= link_to tip.title, tip.citation
-        .description= tip.description
+        .description== tip.description
 
     - @mailbox.sorted_folders.each do |folder|
       - if folder.priority_messages.any?
         .folder class=folder.status class=("inbox" if folder.is_inbox)
           h3= folder.nice_name
+          - if folder.suggestion.present?
+            .suggestion= folder.suggestion.description
           table
             - folder.priority_messages.each do |message|
               tr
                 td.from= message.from
-                td.subject= message.subject
+                td.subject= truncate(message.subject, length: 50, separator: " ")
                 td.old #{time_ago_in_words(message.date)} ago
+
+  #footer
+    = "Made by "
+    a href="http://welaika.com" weLaika
+    = " for "
+    a href="http://railsrumble.com/entries/32-welaika-2" RailsRumble 2012

@@ -25,7 +25,7 @@ header#main-header
       .block.tip-of-the-day
         h4 =t "mailbox.report.protip"
         h3= link_to tip.title, tip.citation
-        .description= tip.description
+        .description== tip.description
 
     .inner
       - @mailbox.sorted_folders.each do |folder|
