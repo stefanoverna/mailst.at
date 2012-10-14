@@ -4,10 +4,12 @@
   .mailbox-header
     .mailbox.alignleft
       = "user@example.com"
-    h4.alignright
-      = "Screenshotted @ Mon 1st Gen, 1970"
-    .edit.button.alignright
+    .edit.alignright
       = link_to "EDIT", new_mailbox_path
+    .timestamp.alignright
+      = "Screenshotted @"
+      br
+      = "Mon 1st Gen, 1970"
 
   .box
     .inbox.alignleft
