@@ -1,6 +1,10 @@
 class StaticController < ApplicationController
   def home
-    render "home", layout: "homepage"
+    if user_signed_in?
+      redirect_to dashboard_path
+    else
+      render "home", layout: "homepage"
+    end
   end
 
   def dashboard
@@ -9,7 +13,7 @@ class StaticController < ApplicationController
 
   def inboxzero
   end
-  
+
   def privacy
   end
 end

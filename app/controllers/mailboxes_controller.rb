@@ -6,6 +6,10 @@ class MailboxesController < ApplicationController
   respond_to :json, only: :show
   respond_to :js, only: [ :create, :update, :refresh_folders ]
 
+  def index
+    redirect_to dashboard_path
+  end
+
   def create
     @mailbox = Mailbox.new(params[:mailbox])
     @mailbox.user = current_user
