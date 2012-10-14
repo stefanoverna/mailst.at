@@ -5,6 +5,7 @@ en:
     subtagline: "Mailstat helps you fix your email overload problems, infinite-loop searches, forgotten tasks and the consequent waste of time by enforcing good practices taken from the internet-famous Inbox Zero manifest"
     start_today: "Start today!"
     register_why: "Register to Mailstat, specify your inbox and \"to be done\" folders, and start receiving your report with the following content:"
+    signup: "Signup now!"
     
     highlight1:
       title: "Pro Tips"
@@ -18,6 +19,10 @@ en:
       title: "Track your progress"
       description: "Get a daily infographic on how much work still remains to be done"
 
+  dashboard:
+    title: "Dashboard"
+    more_mailbox: "More mailboxes to manage?"
+    add_new: "Add a new account"
 
   mailbox:
     add_new_title: "Add a new mailbox"

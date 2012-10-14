@@ -1,5 +1,5 @@
 #dashboard
-  h1 Dashboard!
+  h1 =t "dashboard.title"
 
   ul
     - current_user.mailboxes.each do |mailbox|
@@ -9,5 +9,5 @@
           span.status
 
   footer
-    ' More mailboxes to manage?
-    = link_to "Add a new account", new_mailbox_path
+    =t("dashboard.more_mailbox")
+    = link_to t("dashboard.add_new"), new_mailbox_path
