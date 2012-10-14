@@ -1,0 +1,79 @@
+form.edit_mailbox
+
+  fieldset
+    margin-bottom: 30px
+    padding-bottom: 30px
+    border-bottom: 2px solid #ccc
+
+    legend
+      font-size: 30px
+      margin-bottom: 20px
+
+    &> .input, &>.fields
+      margin-left: 50px
+
+  .fields
+    padding-bottom: 20px
+    margin-bottom: 20px
+    position: relative
+    border-bottom: 1px solid #ddd
+
+    &:last-child
+      padding-bottom: 0
+      margin-bottom: 0
+      border-bottom-width: 0
+
+    .remove_nested_fields
+      position: absolute
+      top: 0px
+      left: -50px
+      width: 30px
+      padding-right: 20px
+      line-height: 60px
+      font-family: "Entypo"
+      font-size: 60px
+      color: #df2514
+      text-decoration: none
+      text-align: right
+      +transparent
+      +transition-property(all)
+      +transition-duration(0.3s)
+      +transition-timing-function(ease-in)
+
+    &:hover .remove_nested_fields
+      +opaque
+
+  .imap-name
+    +pie-clearfix
+
+    &> .input
+      float: left
+
+    &> .rename-folder
+      float: left
+      margin-left: 15px
+      font-size: 12px
+      line-height: 25px
+
+  .add_nested_fields
+    margin-top: 20px
+    +metro-button(#645642, "Z")
+    margin-left: 50px
+
+  select.max_seconds_to_process
+    width: 120px
+
+  fieldset legend::before
+    font-size: 60px
+    font-family: Entypo
+    line-height: 21px
+    display: inline-block
+    padding-right: 13px
+    color: #666
+
+  fieldset.morning-report legend::before
+    content: "%"
+  fieldset.inbox-folder legend::before
+    content: "w"
+  fieldset.defer-folders legend::before
+    content: "N"
