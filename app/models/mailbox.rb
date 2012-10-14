@@ -155,6 +155,9 @@ class Mailbox < ActiveRecord::Base
     else
       :warning
     end
+
+  rescue
+    :unknown
   end
 
   def has_report_infos?
