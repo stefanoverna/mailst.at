@@ -4,7 +4,7 @@ en:
     tagline: "Kill your inbox, raise your karma"
     subtagline: "Mailstat helps you fix your email overload problems, infinite-loop searches, forgotten tasks by enforcing good practices taken from the internet-famous Inbox Zero manifest"
     start_today: "Start today!"
-    register_why: "Register to Mailstat, specify your inbox and \"to be done\" folders, and start receiving your report with the following content:"
+    register_why: "Register to Mailstat, specify your inbox and your \"to be done\" folders, and start receiving your daily report"
 
     highlight1:
       title: "Pro Tips"
