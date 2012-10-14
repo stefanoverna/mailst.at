@@ -3,6 +3,6 @@ class ReportMailer < ActionMailer::Base
 
   def send_daily_summary(mailbox)
     @mailbox = mailbox
-    mail(to: @mailbox.username, subject: "Mailstat - Daily summary")
+    mail(to: @mailbox.user.email, subject: "Mailstat - Daily summary")
   end
 end
