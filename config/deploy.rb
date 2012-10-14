@@ -103,25 +103,25 @@ namespace :deploy do
   end
 end
 
-namespace :delayed_job do 
+namespace :delayed_job do
     desc "Restart the delayed_job process"
     task :restart, :roles => :app do
         run "cd #{current_path}; RAILS_ENV=#{rails_env} script/delayed_job restart"
     end
-    
-    desc "Start the delayed_job process"    
+
+    desc "Start the delayed_job process"
     task :start, :roles => :app do
-        run "cd #{current_path}; RAILS_ENV=#{rails_env} script/delayed_job start"
+        run "cd #{current_path}; RAILS_ENV=#{rails_env} script/delayed_job start -n 3"
     end
-    
-    desc "Stop the delayed_job process"    
+
+    desc "Stop the delayed_job process"
     task :stop, :roles => :app do
         run "cd #{current_path}; RAILS_ENV=#{rails_env} script/delayed_job stop"
     end
 end
 
-# Delayed Job  
-after "deploy:stop",    "delayed_job:stop"  
-after "deploy:start",   "delayed_job:start"  
-after "deploy:restart", "delayed_job:restart" 
+# Delayed Job
+after "deploy:stop",    "delayed_job:stop"
+after "deploy:start",   "delayed_job:start"
+after "deploy:restart", "delayed_job:restart"
 
