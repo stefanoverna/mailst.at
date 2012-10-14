@@ -1,0 +1,44 @@
+.two-cols
+  +pie-clearfix
+
+  &> section
+    float: left
+    width: 60%
+    margin-right: 5%
+
+    form .input
+
+      &> label
+        width: 90px
+
+      &> textarea,
+      &> input[type="text"],
+      &> input[type="password"],
+      &> input[type="email"],
+      &> input[type="number"],
+      &> select,
+      &> div
+        margin-left: 100px
+        width: 260px
+
+      &> input[type="text"],
+      &> input[type="password"],
+      &> input[type="email"],
+      &> input[type="number"],
+        border: 1px solid #aaaaaa
+        +border-radius(4px)
+        padding: 2px 4px
+        width: 260px - 4px * 2
+        font-size: 13px
+        font-family: 'Open Sans', 'Helvetica', 'Arial'
+
+  &> aside
+    float: left
+    width: 35%
+
+    h3
+      margin-bottom: 10px
+      margin-top: 20px
+
+      &:first
+        margin-top: 0

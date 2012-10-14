@@ -1,18 +1,25 @@
-h1 Sign up
+.two-cols
+  section
+    h1 Sign up
 
-= simple_form_for resource, :as => resource_name, :url => registration_path(resource_name) do |f|
+    = simple_form_for resource, :as => resource_name, :url => registration_path(resource_name) do |f|
 
-  = field_set_tag "Introduce yourself" do
-    = f.input :first_name
-    = f.input :last_name
+      = field_set_tag "Introduce yourself" do
+        = f.input :first_name
+        = f.input :last_name
 
-  = field_set_tag "Your credentials" do
-    = f.input :email
-    = f.input :password
+      = field_set_tag "Your credentials" do
+        = f.input :email
+        = f.input :password
 
-  footer
-    = submit_tag "Sign up!"
+      footer
+        = submit_tag "Sign up!"
 
-    aside
-      = link_to "Forgot password?", new_password_url(resource_name)
-      = link_to "Login", new_session_url(resource_name)
+        aside
+          = link_to "Forgot password?", new_password_url(resource_name)
+          = link_to "Login", new_session_url(resource_name)
+
+  aside
+    - 3.times do |i|
+      h3= t "signup.block#{i}.title"
+      .description= t "signup.block#{i}.description"
