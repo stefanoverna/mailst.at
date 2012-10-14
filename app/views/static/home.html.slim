@@ -1,34 +1,20 @@
 #home
   .vote
     a href='http://railsrumble.com/entries/32-welaika-2'
-      = "Please take the time to vote for us for the Rails Rumble 2012!"
+      = t "home.please_vote"
 
-  h2.clear= t "homepage.tagline", default: "Your personal Inbox assistant"
+  h2.clear= t "home.tagline"
   .window
-    h3= t "homepage.subtagline", default: "Mailst.at helps you fix your email overload problems, infinite-loop searches, forgotten tasks and the consequent waste of time by enforcing good practices taken from the internet-famous Inbox Zero manifest"
+    h3= t "home.subtagline"
 
-  /
-    section#be.window
-      h3= t "be.title", default: "We like to help your mail to be..."
-      p= t "manifest.top", default: "You have to <strong>CHOOSE</strong>"
-      ul
-        li
-	  p= t "manifest.do", default: "DO it right now you just do something right now, and delete the message"
-        li
-	  p= t "manifest.delete", default: "Simply DELETE it you really don't need to do anything, so just delete the message and focus on productivity"
-        li
-	  p= t "manifest.delegate", default: "DELEGATE a task to somebody you're not the right person to do the job: forward the message and then delete it"
-        li
-	  = t "manifest.defere", default: "You've to DEFERE if the message requires too much time to be processed, move it into one of your \"to be done\" folders: you'll catch that up later"
-
-  h2= "Start from today! Here's how:"
+  h2= t "home.start_today"
 
   .window
-    h3= t "homepage.report_presentation", default: "Register to Mailstat, specify your inbox and \"to be done\" folders, and start receiving your report with"
+    h3= t "home.register_why"
 
-  #mail-report
-    = render "report/folder", name: "Get a Pro Tip", text: "Get one of the heroic uber pro tips directly from the Inbox Zero phylosophy archives", classe: "tip"
-    = render "report/folder", name: "High priority mails", text: "Have a quick overview of what communications require your attention (a.k.a. they're so OLD)", classe: "priority"
-    = render "report/folder", name: "Track your progress", text: "Get a daily infographic on how much work still remains to be done", classe: "progress"
+  .mail-highlights
+    = render "home/highlight", name: t("home.highlight1.title"), text: t("home.highlight1.description"), classe: "tip"
+    = render "home/highlight", name: t("home.highlight2.title"), text: t("home.highlight2.description"), classe: "priority"
+    = render "home/highlight", name: t("home.highlight3.title"), text: t("home.highlight3.description"), classe: "progress"
 
   .signup= "Signup now!"

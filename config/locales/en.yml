@@ -1,4 +1,24 @@
 en:
+  home:
+    please_vote: "Please take the time to vote for us for the Rails Rumble 2012!"
+    tagline: "Kill your inbox, raise your karma"
+    subtagline: "Mailstat helps you fix your email overload problems, infinite-loop searches, forgotten tasks and the consequent waste of time by enforcing good practices taken from the internet-famous Inbox Zero manifest"
+    start_today: "Start today!"
+    register_why: "Register to Mailstat, specify your inbox and \"to be done\" folders, and start receiving your report with the following content:"
+    
+    highlight1:
+      title: "Pro Tips"
+      description: "Get one heroic uber pro tip directly from the Inbox Zero phylosophy archives"
+      
+    highlight2:
+      title: "High priority mails"
+      description: "Have a quick overview of what communications require your attention (a.k.a. they're so OLD)"
+      
+    highlight3:
+      title: "Track your progress"
+      description: "Get a daily infographic on how much work still remains to be done"
+
+
   mailbox:
     add_new_title: "Add a new mailbox"
     morning_report: "Morning report"
@@ -9,6 +29,7 @@ en:
     rename_folder: "Rename?"
 
     connection_params:
+      title: "Mailbox settings"
       intro: "To effectively be able to help you reching the inbox karma, we need to ask your mailbox access. Follow the instructions to better understand what we need and what we'll do with your private data. We promise to be as careful as we can handling your data."
       account_name: "Account Name"
       connection_params: "Connection Parameters"
@@ -24,3 +45,25 @@ en:
       block2:
         title: "What we'll NOT do?"
         description: "We'll NEVER look into your mail content or attachements, we'll not store your emails, nor we'll use them in any way. If you're scared you can immediately delete your account. We'll delete EVERYTHING related to you."
+        
+    folders:
+      title: "Folder settings"
+      folders:
+        intro: "To start getting more out of your inbox you have to start grasping some serious Inbox Zero concept. Here we'll start to understand how to effectively use the inbox and other \"defer\" folders. Go on, read with attention and open mind!"
+        
+        intro2: "The most important concept that you have to grasp is that email is exclusively a communication tool. So the objective of your email handling is replying as fast and as effectively as possible to all communications. Your other goal is to spend less time as possible on email and get stuff done in other ways. So remember, your mailbox is just a communication tool, not a to-do list, not a file repository, not a read later application. Go on with inbox handling."
+        
+      inbox_folder:
+        title: "Inbox setup"
+        description: "Inbox is where all your standard emails will arrive. You can setup filters for some kind of mail, but the inbox should be the place to be for new messages. If your goal is to communicate through mail you should always do something with a new one. Choose one between: delete, reply, delegate forwarding the mail, do what the mail says to do, procrastinate (move the mail to a defer folder). Every action should be followed by the deletion or archival of the mail from the inbox. Rember, inbox should always be empty and email should be used only for communication."
+        
+      defer_folders:
+        title: "Defer folders"
+        description: "The defer action is the only exception from executing immediately an action on an email. Often we receive long mails that require a lot of attention and time to reply. Maybe if you are in the middle of an important job you want to defer the response. To avoid cluttering the inbox and miss some communication, you can use a defer folder. The best thing would be to have just one defer folder that should be as empty as possible. Maybe you prefer to have more queues that you want to handle at different speed. Now you can tell us what your defer folders are, and how often you clean them. Remember, empty folders are a signal of efficient communication."
+        
+      morning_report:
+        title: "Daily report"
+        description: "What we'll do together is to learn the inbox zero principles. How we plan to do this? Every day we'll send you an email that recaps the status of your mailbox and suggests you which steps you should take to get better. Our objective is that you become indipendent from our service and go on with your own mailbox managing technique."
+        
+  footer:
+    copyright: "Made by weLaika for RailsRumble 2012"
