@@ -1,5 +1,5 @@
 header#main-header
-  h1 =t("mailbox.report.title", label: @mailbox.label)
+  h1= t("mailbox.report.title", label: @mailbox.label)
   .actions
     = link_to t("mailbox.report.mail_settings"), edit_mailbox_path(@mailbox, folders: true)
 

@@ -1,7 +1,7 @@
 module ApplicationHelper
 
   def t(name, options = {})
-    I18n.t(name).html_safe
+    I18n.t(name, options).html_safe
   end
 
   def form_error_messages(form, resource)
