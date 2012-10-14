@@ -4,6 +4,8 @@
   .mailbox-header
     .mailbox.alignleft
       = "user@example.com"
+    h4.alignright
+      = "Screenshotted @ Mon 1st Gen, 1970"
     .edit.button.alignright
       = link_to "EDIT", new_mailbox_path
 
@@ -46,7 +48,9 @@
           - 3.times do
             li.mail.alignleft
               p
+                span.icons= "l"
                 = Faker::Lorem.words(1)[0]
                 = " / "
                 = Faker::Name.name
-              date= Faker::Lorem.sentence(3)
+              date
+                = Faker::Lorem.sentence(3)
