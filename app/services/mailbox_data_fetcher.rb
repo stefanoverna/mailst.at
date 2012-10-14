@@ -8,7 +8,8 @@ class MailboxDataFetcher
           folder.imap_name,
           DateTime.now - folder.max_seconds_to_process.seconds
         )
-        summary[:old_messages].map! do |mail|
+        old_messages = summary[:old_messages] || []
+        old_messages.map! do |mail|
           {
             subject: mail.subject.to_s,
             from: mail.header[:from].decoded,
