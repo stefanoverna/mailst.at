@@ -5,6 +5,10 @@
       = link_to t("mailbox.folders.change_mail_parameters"), edit_mailbox_path(@mailbox)
       = link_to t("mailbox.folders.refresh_imap"), refresh_folders_mailbox_path(@mailbox), remote: true, id: "refresh-folders"
 
+  .loading
+    .spinner
+    ' Refreshing IMAP folders.. please wait.
+
   #to-be-refreshed
     .intro= t "mailbox.folders.folders.intro"
 

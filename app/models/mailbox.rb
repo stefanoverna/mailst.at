@@ -99,7 +99,47 @@ class Mailbox < ActiveRecord::Base
   end
 
   def sorted_folders
-    [ inbox_folder ] + defer_folders
+    ([ inbox_folder ] + defer_folders).compact
+  end
+
+  def next_report_time
+    tzinfo = TZInfo::Timezone.get(timezone)
+    now_utc = DateTime.now.utc
+    now_local = tzinfo.utc_to_local(now_utc)
+    time = Time.utc(now_local.year, now_local.month, now_local.day, report_time_hour).to_datetime
+    offset = sprintf("%+4d", tzinfo.current_period.utc_offset / 3600)
+    time = time.change(:offset => offset)
+    if time < DateTime.now
+      time + 1.day
+    else
+      time
+    end
+  end
+
+  def average_status
+    if last_mailbox_fetch_at.nil? || folders.count.zero?
+      return :unknown
+    end
+
+    mapper = {
+      success:  1,
+      warning:  0,
+      failure: -1
+    }
+
+    statuses = folders.map do |f|
+      mapper[f.status]
+    end
+
+    average_status = statuses.sum / folders.count
+
+    if average_status > 0.7
+      :success
+    elsif average_status < 0.7
+      :falure
+    else
+      :warning
+    end
   end
 
 end

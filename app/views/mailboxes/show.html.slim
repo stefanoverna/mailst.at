@@ -23,52 +23,22 @@ header#main-header
     - tip = Tip.random
     - if tip.present?
       .block.tip-of-the-day
-        h3 Pro-tip of the day
-        h4= link_to tip.title, tip.citation
+        h4 Pro-tip of the day
+        h3= link_to tip.title, tip.citation
         .description= tip.description
 
-    .box
-      .inbox.alignleft
-        h3= "Inbox"
-        .inbox-text
-          = Faker::Lorem.sentence(40)
-        .mailsquare-cont.alignright
-          = "Total"
-          .mailsquare.good
-            = 50
-        .mailsquare-cont.alignright
-          = "Overdue"
-          .mailsquare.warn
-            = 10
-      .protip-cont.alignleft
-        h3= "Protip of the day:"
-        .protip
-          .title= Faker::Name.name
-          = Faker::Lorem.sentence(30)
+    .inner
+      - @mailbox.sorted_folders.each do |folder|
+        - if folder.priority_messages.any?
+          section.folder class=folder.status class=("inbox" if folder.is_inbox)
+            h3= folder.nice_name
+            table
+              - folder.priority_messages.each do |message|
+                tr
+                  td.from= message.from
+                  td.subject= message.subject
+                  td.old #{time_ago_in_words(message.date)} ago
+- else
+  .info-panel
+    h3 Your first Morning Report will arrive at your inbox in #{time_ago_in_words(@mailbox.next_report_time)}!
 
-    .box
-      .defer-header
-        h3= "Defer folders"
-        .defer-text
-          = Faker::Lorem.sentence(40)
-      - 2.times do
-        .defer-cont.clear
-          h4.title= Faker::Name.name
-          ul.defer-box
-            .mailsquare-cont.alignright
-              = "Total"
-              .mailsquare.good
-                = 50
-            .mailsquare-cont.alignright
-              = "Overdue"
-              .mailsquare.bad
-                = 10
-            - 3.times do
-              li.mail
-                .icons= "l"
-                .p
-                  = Faker::Lorem.words(1)[0]
-                  = " / "
-                  = Faker::Name.name
-                .subject
-                  = Faker::Lorem.sentence(3)
