@@ -25,6 +25,7 @@
             ' Verifying connection parameters... please wait.
     aside
       - 3.times do |i|
-        h3= t "mailbox.connection_params.block#{i}.title"
-        .description= t "mailbox.connection_params.block#{i}.description"
+        .block
+          h3= t "mailbox.connection_params.block#{i}.title"
+          .description= t "mailbox.connection_params.block#{i}.description"
 
