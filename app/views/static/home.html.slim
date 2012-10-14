@@ -1,11 +1,14 @@
 #home
-  a href='http://railsrumble.com/entries/32-welaika-2'
-    h4.button= "Please take the time to vote for us for the Rails Rumble 2012!"
-  h2= t "homepage.tagline", default: "Your personal Inbox assistant"
-  h3= t "homepage.subtagline", default: "Mailst.at helps you fix your email overload problems, infinite-loop searches, forgotten tasks and the consequent waste of time by enforcing good practices taken from the internet-famous Inbox Zero manifest"
+  .vote
+    a href='http://railsrumble.com/entries/32-welaika-2'
+      = "Please take the time to vote for us for the Rails Rumble 2012!"
+
+  h2.clear= t "homepage.tagline", default: "Your personal Inbox assistant"
+  .window
+    h3= t "homepage.subtagline", default: "Mailst.at helps you fix your email overload problems, infinite-loop searches, forgotten tasks and the consequent waste of time by enforcing good practices taken from the internet-famous Inbox Zero manifest"
 
   /
-    section#be
+    section#be.window
       h3= t "be.title", default: "We like to help your mail to be..."
       p= t "manifest.top", default: "You have to <strong>CHOOSE</strong>"
       ul
@@ -20,12 +23,12 @@
 
   h2= "Start from today! Here's how:"
 
-  h3= t "homepage.report_presentation", default: "Register to Mailstat, specify your inbox and \"to be done\" folders, and start receiving your report with"
+  .window
+    h3= t "homepage.report_presentation", default: "Register to Mailstat, specify your inbox and \"to be done\" folders, and start receiving your report with"
 
   #mail-report
-    = render "report/folder", name: "Get a Pro Tip", text: "Get one of the heroic uber pro tips directly from the Inbox Zero phylosophy archives"
-    = render "report/folder", name: "High priority mails", text: "Have a quick overview of what communications require your attention (a.k.a. they're so OLD)"
-    = render "report/folder", name: "Track your progress", text: "Get a daily infographic on how much work still remains to be done"
+    = render "report/folder", name: "Get a Pro Tip", text: "Get one of the heroic uber pro tips directly from the Inbox Zero phylosophy archives", classe: "tip"
+    = render "report/folder", name: "High priority mails", text: "Have a quick overview of what communications require your attention (a.k.a. they're so OLD)", classe: "priority"
+    = render "report/folder", name: "Track your progress", text: "Get a daily infographic on how much work still remains to be done", classe: "progress"
 
-  .stepover
-    h2.button= "Raise your karma!"
+  .signup= "Signup now!"

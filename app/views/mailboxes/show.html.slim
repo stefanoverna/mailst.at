@@ -4,10 +4,12 @@
   .mailbox-header
     .mailbox.alignleft
       = "user@example.com"
-    h4.alignright
-      = "Screenshotted @ Mon 1st Gen, 1970"
-    .edit.button.alignright
+    .edit.alignright
       = link_to "EDIT", edit_mailbox_path(@mailbox, folders: true)
+    .timestamp.alignright
+      = "Screenshotted @"
+      br
+      = "Mon 1st Gen, 1970"
 
   .box
     .inbox.alignleft
@@ -46,11 +48,11 @@
             .mailsquare.bad
               = 10
           - 3.times do
-            li.mail.alignleft
-              p
-                span.icons= "l"
+            li.mail
+              .icons= "l"
+              .p
                 = Faker::Lorem.words(1)[0]
                 = " / "
                 = Faker::Name.name
-              date
+              .subject
                 = Faker::Lorem.sentence(3)

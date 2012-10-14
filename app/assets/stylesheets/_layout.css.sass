@@ -4,22 +4,6 @@ $red: #FF0029
 $grey: #CDD0CB
 $darkgrey: #8B8683
 
-=textbox
-  background: $darkgrey
-  padding: 15px
-  color: #fff
-  margin-right: 2px
-
-=mailsquare($color)
-  width: 80px
-  height: 80px
-  font-size: 48px
-  font-weight: bolder
-  color: white
-  text-align: right
-  margin: 2px
-  background: $color
-
 @include font-face("Entypo", font-files("entypo-webfont.eot", "entypo-webfont.svg", "entypo-webfont.ttf", "entypo-webfont.woff"))
 +global-reset
 
@@ -42,10 +26,11 @@ body
 
 .button
   text-align: center
-  padding: 7px 10px
+  padding: 15px
   margin: 10px auto
   background: $darkgrey
   font-weight: bold
+  display: inline-block
 
 .box
   width: 100%
@@ -54,6 +39,16 @@ body
   padding: 5px
   border-top: 1px solid $darkgrey
   +clearfix
+
+.window
+  width: 100%
+  position: relative
+  margin-bottom: 20px
+  padding: 5px
+  background: $grey
+  font-weight: normal
+  +clearfix
+
 a
   color: #333
   text-decoration: none

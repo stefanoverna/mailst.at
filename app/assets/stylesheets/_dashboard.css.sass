@@ -8,10 +8,13 @@
     .mailbox
       font-size: 20px
       line-height: 55px
-  h4.alignright
-    width: 25%
-    position: absolute
+  .timestamp
+    position: absolute !important
     right: 0
+    +metro-button($grey, "D")
+  .edit
+    +metro-button($darkgrey, "j")
+
 
   .mailsquare-cont
     font-weight: bold
@@ -30,7 +33,8 @@
       margin-top: 20px
 
   .protip-cont
-    width: 30%
+    width: 29%
+    margin-left: .5%
     .protip
       background: $grey
       padding: 15px
@@ -48,10 +52,25 @@
     .defer-box
       margin-bottom: 10px
       .mail
+        position: relative
         background: $grey
         width: 70%
         margin: 5px 0
         padding: 5px
+        .icon
+          height: 100%
+          width: 5%
+          position: absolute
+        .p
+          position: absolute
+          width: 80%
+          left: 7%
+          top: 15px
+        .subject
+          position: absolute
+          width: 80%
+          left: 7%
+          top: 35px
 
 #dashboard
   ul

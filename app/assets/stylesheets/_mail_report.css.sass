@@ -1,12 +1,12 @@
 #mail-report
-  border: 1px solid #ccc
-  padding: 40px
-  width: 600px
-  margin: 20px auto
-  +box-shadow(rgba(black, 0.3) 0px 4px 10px)
-  +nested-reset
-  font-family: Helvetica, Arial
-  text-align: left
+  // border: 1px solid #ccc
+  // padding: 40px
+  width: 100%
+  // margin: 20px auto
+  // +box-shadow(rgba(black, 0.3) 0px 4px 10px)
+  // +nested-reset
+  // font-family: Helvetica, Arial
+  // text-align: left
 
   .mailstat
     font-size: 30px
@@ -21,31 +21,37 @@
     margin-bottom: 20px
 
   .folder
-    width: 600px
+    width: 210px
+    height: 335px
+    float: left
+    margin-left: 2%
+    padding: 2px
 
     header
-      margin-bottom: 15px
-      width: 600px
-      height: 220px
+      width: 210px
       padding: 5px
-      position: relative
       h2
-        font-size: 24px
+        font-size: 22px
         padding: 5px 0
-        font-weight: bold
         margin-bottom: 10px
+        text-align: center
+        margin: 0 0 0 0
 
     .mails
-      font-size: 20px
-      width: 230px
-      position: absolute
-      left: 0
-      padding: 5px
-      text-align: justify
+      font-size: 16px
+      width: 190px
+      height: 264px
+      padding: 10px
+      text-align: center
 
-    .image
-      width: 350px
-      height: 200px
-      position: absolute
-      right: 10px
-      background: url("https://lorempixel.com/350/200")
+
+      .image
+        width: 190px
+        height: 190px
+        margin-bottom: 10px
+        &.tip
+          background: url("protips.jpg")
+        &.priority
+          background: url("highpriority.jpg")
+        &.progress
+          background: url("progress.jpg")
