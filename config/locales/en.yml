@@ -18,6 +18,10 @@ en:
       title: "Track your progress"
       description: "Get a daily infographic on how much work still remains to be done"
 
+  dashboard:
+    title: "Dashboard"
+    more_mailbox: "More mailboxes to manage?"
+    add_new: "Add a new account"
 
   mailbox:
     add_new_title: "Add a new mailbox"
@@ -33,6 +37,7 @@ en:
       intro: "To effectively be able to help you reaching the inbox karma, we need to ask your mailbox access. Follow the instructions to better understand what we need and what we'll do with your private data. We promise to be more careful than anything handling your data."
       account_name: "Account Name"
       connection_params: "Connection Parameters"
+      verifying: "Verifying connection parameters... please wait."
 
       block0:
         title: "Why mailbox access?"
@@ -48,6 +53,7 @@ en:
 
     folders:
       title: "Folder settings"
+      loading: "Refreshing IMAP folders.. please wait."
       folders:
         intro: "Start to get more out of your inbox while grasping some serious Inbox Zero concept. Understand how to effectively use the inbox and other \"defer\" folders. Go on, read with attention and open mind!"
 
@@ -62,6 +68,15 @@ en:
       morning_report:
         title: "Daily report"
         description: "Select your timezone and your preferred time to get the daily report. Decide also if you want to get email every day or less."
+
+    report:
+      folder0: "Excellent job! Consider getting the daily report less frequently, if you feel confident."
+      folder1: "Your folder it's very good! Keep up the good work! Try to concentrate the time you spend on your email to reach true inbox zero."
+      folder2: "Warning, you have someone waiting for your answers. Don't worry though in a couple of concentrated hours you'll be back on track!"
+      folder3: "Warning, your queues are starting to get longer. Plan to spend some time on email or you'll be soon in a mess."
+      folder4: "It's time to stop and have some mail answered. You have lots of people waiting for your answers. Probably you'll need at least half a day of work to clean up everything."
+      folder5: "It's important that you stop your daily routine and do a hard work on email. Consider archiving everything and starting from scratch, could be a good option."
+      folder6: "It's time to have a fresh start. Archive all your emails and start from scratch!"
 
   footer:
     copyright: "Made by weLaika for RailsRumble 2012"

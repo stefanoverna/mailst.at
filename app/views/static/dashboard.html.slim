@@ -10,8 +10,8 @@
             span.status class=mailbox.average_status
 
     footer
-      =' t("dashboard.more_mailboxes")
-      = link_to t("dashboard.add_mailbox"), new_mailbox_path
+      =t("dashboard.more_mailbox")
+      = link_to t("dashboard.add_new"), new_mailbox_path
 
   - else
     .info-panel
