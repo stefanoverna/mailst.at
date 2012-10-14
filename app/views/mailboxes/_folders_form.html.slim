@@ -22,7 +22,9 @@
           - @mailbox.build_inbox_folder_if_missing
 
           = field_set_tag t("mailbox.folders.inbox_folder.title"), class: "inbox-folder" do
-            .intro= t("mailbox.folders.inbox_folder.description")
+            .intro
+              = t("mailbox.folders.inbox_folder.description")
+              = link_to t("mailbox.folders.read_more"), inboxzero_path
 
             = f.simple_fields_for :folders, @mailbox.inbox_folder do |ff|
               = ff.input :imap_name, collection: ff.object.available_imap_folders(@mailbox), include_blank: false
@@ -30,7 +32,9 @@
               = ff.input :is_inbox, as: :hidden
 
           = field_set_tag t("mailbox.folders.defer_folders.title"), class: "defer-folders" do
-            .intro= t("mailbox.folders.defer_folders.description")
+            .intro
+              = t("mailbox.folders.defer_folders.description")
+              = link_to t("mailbox.folders.read_more"), inboxzero_path
 
             = f.simple_fields_for :folders, @mailbox.defer_folders do |ff|
               .imap-name
@@ -50,7 +54,9 @@
             = f.link_to_add t("mailbox.folders.add_a_defer_folder"), :folders
 
           = field_set_tag t("mailbox.folders.morning_report.title"), class: "morning-report" do
-            .intro= t("mailbox.folders.morning_report.description")
+            .intro
+              = t("mailbox.folders.morning_report.description")
+              = link_to t("mailbox.folders.read_more"), inboxzero_path
 
             = f.input :timezone, collection: timezones_collection, as: :grouped_select, group_method: :last, include_blank: false
             = f.input :report_time_hour, collection: hours_collection, include_blank: false

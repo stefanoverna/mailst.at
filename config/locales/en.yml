@@ -85,6 +85,7 @@ en:
       rename_folder: "Rename folder?"
       title: "Folder settings"
       loading: "Refreshing IMAP folders.. please wait."
+      read_more: "Read more"
       folders:
         intro: "Start to get more out of your inbox while grasping some serious Inbox Zero concept. Understand how to effectively use the inbox and other \"defer\" folders. Go on, read with attention and open mind!"
 
