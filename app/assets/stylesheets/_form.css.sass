@@ -1,24 +1,64 @@
 form
+  +pie-clearfix
+
   fieldset
-    margin-bottom: 20px
+    margin-bottom: 30px
+    padding-bottom: 30px
+    border-bottom: 2px solid #ccc
 
     legend
+      font-size: 30px
+      margin-bottom: 20px
       font-weight: 300
-      font-size: 20px
-      margin-bottom: 10px
+
+  footer
+    aside
+      float: left
+      line-height: 40px
+
+      a
+        padding-right: 20px
+        font-size: 15px
+        text-decoration: underline
+        color: #0a486b
+
+    input[type="submit"]
+      +metro-button(#0a486b, "W")
+      padding-left: 20px
+      float: right
 
   .input
     position: relative
-    margin-top: 4px
+    margin-top: 10px
 
-    label
+    &:first-child
+      margin-top: 0
+
+    &> label
       position: absolute
       top: 0
       left: 0
       width: 140px
-      line-height: 20px
+      line-height: 25px
 
-    textarea, input[type="text"], input[type="password"],
-    input[type="email"], input[type="number"], select
+    &> textarea,
+    &> input[type="text"],
+    &> input[type="password"],
+    &> input[type="email"],
+    &> input[type="number"],
+    &> select,
+    &> div
       margin-left: 150px
+      width: 300px
+
+    &> input[type="text"],
+    &> input[type="password"],
+    &> input[type="email"],
+    &> input[type="number"],
+      border: 1px solid #aaaaaa
+      +border-radius(4px)
+      padding: 2px 4px
+      width: 300px - 4px * 2
+      font-size: 13px
+      font-family: 'Open Sans', 'Helvetica', 'Arial'
 

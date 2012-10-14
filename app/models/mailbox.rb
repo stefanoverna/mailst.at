@@ -70,4 +70,30 @@ class Mailbox < ActiveRecord::Base
     end
   end
 
+  def zone_offset
+    TZInfo::Timezone.get(self.timezone).current_period.utc_offset / 3600
+  end
+
+  def self.with_report_to_be_sent
+    mailboxes = []
+    now_utc = DateTime.now.utc
+    puts "Ora sono le #{now_utc.hour}"
+    timezone_identifiers = Mailbox.select("DISTINCT(timezone)").map(&:timezone)
+    timezone_identifiers.each do |timezone_identifier|
+      timezone = TZInfo::Timezone.get(timezone_identifier)
+      now_local = timezone.utc_to_local(now_utc)
+      puts "In #{timezone_identifier} ora sono le #{now_local.hour}"
+      mailboxes += Mailbox.where(
+        "last_report_sent_at IS NULL OR (timezone = ? AND report_time_hour <= ? AND last_report_sent_at < ?)",
+        timezone_identifier,
+        now_local.hour,
+        24.hours.ago
+      )
+    end
+    mailboxes
+  end
+
+  def send_report!
+  end
+
 end

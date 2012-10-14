@@ -1,51 +1,14 @@
-h1 Dashboard
+#dashboard
+  h1 Dashboard!
 
-.mailbox-header
-  .mailbox.alignleft
-    = "user@example.com"
-  .edit.button.alignright
-    = link_to "EDIT", new_mailbox_path
+  ul
+    - current_user.mailboxes.each do |mailbox|
+      li
+        = link_to mailbox_path(mailbox), class: "mailbox" do
+          span.title= mailbox.label
+          span.status
 
-.box
-  .inbox.alignleft
-    h3= "Inbox"
-    .inbox-text
-      = Faker::Lorem.sentence(40)
-    .mailsquare-cont.alignright
-      = "Total"
-      .mailsquare.good
-        = 50
-    .mailsquare-cont.alignright
-      = "Overdue"
-      .mailsquare.warn
-        = 10
-  .protip-cont.alignleft
-    h3= "Pro tip"
-    .protip
-      .title= Faker::Name.name
-      = Faker::Lorem.sentence(30)
+  footer
+    ' More mailboxes to manage?
+    = link_to "Add a new account", new_mailbox_path
 
-.box
-  .defer-header
-    h3= "Defer folders"
-    .defer-text
-      = Faker::Lorem.sentence(40)
-  - 2.times do
-    .defer-cont.clear
-      h4.title= Faker::Name.name
-      ul.defer-box
-        .mailsquare-cont.alignright
-          = "Total"
-          .mailsquare.good
-            = 50
-        .mailsquare-cont.alignright
-          = "Overdue"
-          .mailsquare.bad
-            = 10
-        - 3.times do
-          li.mail.alignleft
-            p
-              = Faker::Lorem.words(1)[0]
-              = " / "
-              = Faker::Name.name
-            date= Faker::Lorem.sentence(3)

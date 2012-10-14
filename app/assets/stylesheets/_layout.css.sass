@@ -20,6 +20,9 @@ $darkgrey: #8B8683
   margin: 2px
   background: $color
 
+@include font-face("Entypo", font-files("entypo-webfont.eot", "entypo-webfont.svg", "entypo-webfont.ttf", "entypo-webfont.woff"))
++global-reset
+
 body
   font-family: 'Open Sans', 'Helvetica', 'Arial'
   font-size: 14px
@@ -27,16 +30,16 @@ body
 
 .clear
   clear: both
-  
+
 .alignleft
   float: left
-  
+
 .alignright
   float: right
 
 .center
   text-align: center
-  
+
 .button
   text-align: center
   padding: 7px 10px
@@ -51,8 +54,7 @@ body
   padding: 5px
   border-top: 1px solid $darkgrey
   +clearfix
-  
 a
   color: #333
   text-decoration: none
-  
+

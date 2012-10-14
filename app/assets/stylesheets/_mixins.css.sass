@@ -5,3 +5,28 @@
 =radius-shadow
   +border-radius(15px)
   +box-shadow(rgba(black, 0.3) 0px 4px 10px)
+
+=metro-button($color, $icon)
+  background-color: $color
+  border-width: 0
+  border-bottom: 3px solid darken($color, 20%)
+  color: white
+  padding: 8px 20px
+  padding-left: 20px + 20px
+  position: relative
+  display: inline-block
+  text-decoration: none
+  font-size: 15px
+
+  &:before
+    position: absolute
+    top: 50%
+    margin-top: -10px
+    left: 10px
+    line-height: 22px
+    content: $icon
+    font-family: Entypo
+    font-size: 42px
+
+
+

@@ -1,38 +1,50 @@
-= mailbox.errors.inspect
-
 = simple_nested_form_for mailbox do |f|
 
-  = field_set_tag do
-    = f.input :label
+  = form_error_messages(f, mailbox)
 
-  = field_set_tag "Connection params" do
-    = f.input :host
-    = f.input :username
-    = f.input :password
-    = f.input :port
-    = f.input :encryption, as: :select, collection: Mailbox.allowed_encryptions, include_blank: false
+  - if params[:connection_params]
+    = field_set_tag t("mailbox.account_name"), class: "account-name" do
+      = f.input :label
 
-  - if @mailbox.credentials_valid?
+    = field_set_tag t("mailbox.connection_params"), class: "connection-params" do
+      = f.input :host
+      = f.input :username
+      = f.input :password
+      = f.input :port
+      = f.input :encryption, as: :select, collection: Mailbox.allowed_encryptions, include_blank: false
 
-    - @mailbox.build_inbox_folder_if_missing
+  - if params[:folders]
+    - if @mailbox.credentials_valid?
 
-    = field_set_tag "Inbox folder" do
-      = f.simple_fields_for :folders, @mailbox.inbox_folder do |ff|
-        = ff.input :imap_name, collection: ff.object.available_imap_folders(@mailbox), include_blank: false
-        = ff.input :max_seconds_to_process, as: :hidden
-        = ff.input :is_inbox, as: :hidden
+      = field_set_tag t("mailbox.morning_report"), class: "morning-report" do
+        = f.input :timezone, collection: timezones_collection, as: :grouped_select, group_method: :last, include_blank: false
+        = f.input :report_time_hour, collection: hours_collection, include_blank: false
 
-    = field_set_tag "Defer folders" do
-      = f.simple_fields_for :folders, @mailbox.defer_folders do |ff|
-        = ff.input :imap_name, collection: ff.object.available_imap_folders(@mailbox), include_blank: false
-        = ff.input :label
-        = ff.input :max_seconds_to_process, collection: Folder.allowed_times_to_process, include_blank: false
-        = ff.link_to_remove "Remove this folder"
+      - @mailbox.build_inbox_folder_if_missing
 
-      .add= f.link_to_add "Add a Defer folder", :folders
+      = field_set_tag t("mailbox.inbox_folder"), class: "inbox-folder" do
+        = f.simple_fields_for :folders, @mailbox.inbox_folder do |ff|
+          = ff.input :imap_name, collection: ff.object.available_imap_folders(@mailbox), include_blank: false
+          = ff.input :max_seconds_to_process, as: :hidden
+          = ff.input :is_inbox, as: :hidden
 
-    = field_set_tag "Morning report" do
-      = f.input :timezone, collection: timezones_collection, as: :grouped_select, group_method: :last, include_blank: false
-      = f.input :report_time_hour, collection: hours_collection, include_blank: false
+      = field_set_tag t("mailbox.defer_folders"), class: "defer-folders" do
+        = f.simple_fields_for :folders, @mailbox.defer_folders do |ff|
+          .imap-name
+            = ff.input :imap_name, collection: ff.object.available_imap_folders(@mailbox), include_blank: false
+            .rename-folder-check
+              = label_tag :"rename_#{ff.object.id}" do
+                =' check_box_tag :"rename_#{ff.object.id}", "1", ff.object.label.present?, data: { toggle_dom: "toggable_#{ff.object.id}" }
+                =' t("mailbox.rename_folder")
 
-  = f.button :submit
+          .rename-folder data-toggable="toggable_#{ff.object.id}"
+            = ff.input :label
+
+          = ff.input :max_seconds_to_process, collection: Folder.allowed_times_to_process, include_blank: false, input_html: { class: "max_seconds_to_process" }
+
+          = ff.link_to_remove "[", class: "remove_nested_fields"
+
+        = f.link_to_add t("mailbox.add_a_defer_folder"), :folders
+
+  footer
+    = f.button :submit
