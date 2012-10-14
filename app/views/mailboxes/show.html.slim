@@ -46,11 +46,11 @@
             .mailsquare.bad
               = 10
           - 3.times do
-            li.mail.alignleft
-              p
-                span.icons= "l"
+            li.mail
+              .icons= "l"
+              .p
                 = Faker::Lorem.words(1)[0]
                 = " / "
                 = Faker::Name.name
-              date
+              .subject
                 = Faker::Lorem.sentence(3)
