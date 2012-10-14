@@ -37,7 +37,7 @@ class ImapMailbox
         range = 1 .. [result[:messages_count], options[:max_search]].min
 
         oldest_mails = @imap_client.fetch(range, "BODY[HEADER.FIELDS (From To Subject Date)]").map do |header|
-            mail = Mail.read_from_string(header.attr.values.first)
+            Mail.read_from_string(header.attr.values.first)
         end.select do |mail|
             mail.date.utc < older_than_time.utc
         end
@@ -50,8 +50,7 @@ class ImapMailbox
       end
 
       result
-    rescue Exception => e
-      puts e.message
+    rescue
       {}
     end
   end
@@ -60,8 +59,7 @@ class ImapMailbox
     @imap_client = Net::IMAP.new(params[:host], params[:port], params[:encryption], nil, false)
     @imap_client.login(params[:username], params[:password])
     true
-  rescue Exception => e
-    puts e.message
+  rescue
     false
   end
 
