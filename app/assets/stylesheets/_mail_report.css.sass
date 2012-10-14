@@ -1,12 +1,15 @@
 #mailbox-report
   border: 1px solid #eee
-  width: 700px
+  width: 740px
   margin: 0 auto
   +box-shadow(rgba(black, 0.2) 0 2px)
   position: relative
 
   .inner
     padding: 30px
+
+    &:first-child
+      padding-bottom: 0
 
   header
     +pie-clearfix
@@ -33,10 +36,11 @@
         line-height: 11px
 
   .at-a-glance
-    margin-bottom: 30px
+    margin-bottom: 40px
 
     h3
-      font-size: 25px
+      font-size: 30px
+      font-weight: 300
       line-height: 35px
       border-bottom: 2px solid #ccc
 
@@ -102,133 +106,46 @@
 
   .tip-of-the-day
     background-color: #eee
-    border-top: 3px solid #555
+    border-top: 2px solid #555
+    border-bottom: 2px solid #555
     padding: 30px
+    +text-shadow(white 0 1px 0)
 
-  .mailbox-header
-    width: 70%
-    height: 60px
-    line-height: 20px
-    margin-bottom: 20px
-
-    .mailbox
-      font-size: 20px
-      line-height: 55px
-
-
-  .edit
-    +metro-button($darkgrey, "j")
-
-  .mailsquare-cont
-    font-weight: bold
-    .mailsquare.bad
-      +mailsquare($red)
-    .mailsquare.good
-      +mailsquare($green)
-    .mailsquare.warn
-      +mailsquare($yellow)
-
-  // .inbox
-  //   width: 70%
-  //   .inbox-text
-  //     +textbox
-  //   .mailsquare-cont
-  //     margin-top: 20px
-
-  .protip-cont
-    width: 29%
-    margin-left: .5%
-    .protip
-      background: $grey
-      padding: 15px
-      .title
-        font-weight: bold
-
-  .defer-header
-    margin-bottom: 10px
-    .defer-text
-      +textbox
-  .defer-cont
-    .title
+    h4
+      font-size: 15px
+      color: #444
       font-weight: bold
-      border-top: 1px solid $grey
-    .defer-box
-      margin-bottom: 10px
-      .mail
-        position: relative
-        background: $grey
-        width: 70%
-        margin: 5px 0
-        padding: 5px
-        .icon
-          height: 100%
-          width: 5%
-          position: absolute
-        .p
-          position: absolute
-          width: 80%
-          left: 7%
-          top: 15px
-        .subject
-          position: absolute
-          width: 80%
-          left: 7%
-          top: 35px
 
-#mail-report
-  // border: 1px solid #ccc
-  // padding: 40px
-  width: 100%
-  // margin: 20px auto
-  // +box-shadow(rgba(black, 0.3) 0px 4px 10px)
-  // +nested-reset
-  // font-family: Helvetica, Arial
-  // text-align: left
+      &:before
+        content: "\00f3"
+        font-family: Entypo
+        padding-right: 5px
+        font-size: 37px
+        display: inline-block
+        line-height: 13px
+        width: 23px
 
-  .mailstat
-    font-size: 30px
-    line-height: 35px
-    color: #333
-    margin-bottom: 20px
+    h3
+      font-size: 20px
+      color: #222
+      margin-bottom: 3px
 
-  .greetings
-    font-weight: bold
-    color: #666
-    font-size: 15px
-    margin-bottom: 20px
+    .description
+      line-height: 19px
+      font-size: 18px
+      color: #444
 
-  .folder
-    width: 210px
-    height: 335px
-    float: left
-    margin-left: 2%
-    padding: 2px
+  section.folder
+    margin-bottom: 30px
 
-    header
-      width: 210px
-      padding: 5px
-      h2
-        font-size: 22px
-        padding: 5px 0
-        margin-bottom: 10px
-        text-align: center
-        margin: 0 0 0 0
+    table
+      width: 100%
 
-    .mails
-      font-size: 16px
-      width: 190px
-      height: 264px
-      padding: 10px
-      text-align: center
+      td
+        border-bottom: 1px solid #ccc
+        padding: 7px 9px
+        vertical-align: top
 
+        &.old
+          width: 130px
 
-      .image
-        width: 190px
-        height: 190px
-        margin-bottom: 10px
-        &.tip
-          background: url("protips.jpg")
-        &.priority
-          background: url("highpriority.jpg")
-        &.progress
-          background: url("progress.jpg")

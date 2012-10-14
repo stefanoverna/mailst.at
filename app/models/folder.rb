@@ -43,13 +43,25 @@ class Folder < ActiveRecord::Base
   end
 
   def status
-    if overdue_messages_count == 100
-      :failure
-    elsif overdue_messages_count > 50
-      :warning
+    if last_snapshot.present?
+      if overdue_messages_count == 100
+        :failure
+      elsif overdue_messages_count > 50
+        :warning
+      else
+        :success
+      end
     else
-      :success
+      :unknown
     end
+  end
+
+  def priority_messages
+    last_snapshot[:old_messages].map do |m|
+      MessagePresenter.new(m)
+    end
+  rescue
+    []
   end
 
 end

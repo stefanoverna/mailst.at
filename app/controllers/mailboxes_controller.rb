@@ -18,6 +18,9 @@ class MailboxesController < ApplicationController
 
   def refresh_folders
     @mailbox = Mailbox.find(params[:id])
+    @mailbox.last_mailbox_fetch_at = nil
+    @mailbox.last_report_sent_at = nil
+    @mailbox.save
     @mailbox.folders.destroy_all
     @mailbox.latest_completed_check_job.try(:destroy)
     CheckMailboxJob.create(@mailbox)
@@ -25,6 +28,8 @@ class MailboxesController < ApplicationController
 
   def update
     @mailbox = Mailbox.find(params[:id])
+    @mailbox.last_mailbox_fetch_at = nil
+    @mailbox.last_report_sent_at = nil
     @mailbox.update_attributes(params[:mailbox])
     if params[:mailbox][:host]
       @mailbox.latest_completed_check_job.try(:destroy)

@@ -6,7 +6,7 @@
       li
         = link_to mailbox_path(mailbox), class: "mailbox" do
           span.title= mailbox.label
-          span.status
+          span.status class=mailbox.average_status
 
   footer
     =t("dashboard.more_mailbox")
