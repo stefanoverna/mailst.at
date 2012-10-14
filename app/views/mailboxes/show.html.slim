@@ -1,18 +1,18 @@
 header#main-header
-  h1 #{@mailbox.label} Report
+  h1 =t("mailbox.report.title", label: @mailbox.label)
   .actions
-    = link_to "Mailbox settings", edit_mailbox_path(@mailbox, folders: true)
+    = link_to t("mailbox.report.mail_settings"), edit_mailbox_path(@mailbox, folders: true)
 
 - if @mailbox.last_mailbox_fetch_at
   section#mailbox-report
     .inner
 
       header.mail-header.block
-        h3.welcome Good morning, #{current_user.first_name}!
+        h3.welcome =t("mailbox.report.good_morning", username: current_user.first_name)
         .timestamp= l(@mailbox.last_mailbox_fetch_at, format: :short)
 
       .block.at-a-glance
-        h3 Your mailbox, at a glance
+        h3 =t "mailbox.report.glance"
         ul
           - @mailbox.sorted_folders.each do |folder|
             li class=folder.status class=("inbox" if folder.is_inbox)
@@ -23,7 +23,7 @@ header#main-header
     - tip = Tip.random
     - if tip.present?
       .block.tip-of-the-day
-        h4 Pro-tip of the day
+        h4 =t "mailbox.report.protip"
         h3= link_to tip.title, tip.citation
         .description= tip.description
 
@@ -37,8 +37,8 @@ header#main-header
                 tr
                   td.from= message.from
                   td.subject= message.subject
-                  td.old #{time_ago_in_words(message.date)} ago
+                  td.old =t("mailbox.report.time_ago", time: time_ago_in_words(message.date))
 - else
   .info-panel
-    h3 Your first Morning Report will arrive at your inbox in #{time_ago_in_words(@mailbox.next_report_time)}!
+    h3 =t("mailbox.report.first_report", time: time_ago_in_words(@mailbox.next_report_time))
 

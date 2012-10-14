@@ -71,6 +71,13 @@ en:
         description: "Select your timezone and your preferred time to get the daily report. Decide also if you want to get email every day or less."
         
     report:
+      title: "%{label} report"
+      mail_settings: "Mailbox settings"
+      glance: "Your mailbox, at a glance"
+      good_morning: "Good morning, %{username}!"
+      protip: "Pro-tip of the day"
+      time_ago: "%{time} ago"
+      first_report: "Your first Morning Report will arrive at your inbox in %{time}!"
       folder0: "Excellent job! Consider getting the daily report less frequently, if you feel confident."
       folder1: "Your folder it's very good! Keep up the good work! Try to concentrate the time you spend on your email to reach true inbox zero."
       folder2: "Warning, you have someone waiting for your answers. Don't worry though in a couple of concentrated hours you'll be back on track!"
