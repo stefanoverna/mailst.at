@@ -10,7 +10,6 @@ Mailstat::Application.routes.draw do
     end
   end
   match "/dashboard" => "static#dashboard"
-  match "/email" => "static#email"
   match "/inboxzero" => "static#inboxzero"
   match "/privacy" => "static#privacy"
   root to: "static#home"
