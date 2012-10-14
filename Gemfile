@@ -23,6 +23,7 @@ gem 'activeadmin'
 gem 'activeadmin-wysihtml5', github: 'stefanoverna/activeadmin-wysihtml5'
 gem 'chosen-rails'
 gem 'roadie'
+gem 'whenever'
 
 group :assets do
   gem 'sass-rails'

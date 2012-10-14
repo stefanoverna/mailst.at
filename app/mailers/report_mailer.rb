@@ -2,6 +2,7 @@ class ReportMailer < ActionMailer::Base
   default from: "noreply@mailst.at"
 
   def send_daily_summary(mailbox)
-    mail(to: 'monti.fabrizio@gmail.com', subject: "FOOO")
+    @mailbox = mailbox
+    mail(to: @mailbox.username, subject: "Mailstat - Daily summary")
   end
 end

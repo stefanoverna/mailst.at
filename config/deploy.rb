@@ -1,4 +1,5 @@
 require 'bundler/capistrano'
+require 'whenever/capistrano'
 
 # This capistrano deployment recipe is made to work with the optional
 # StackScript provided to all Rails Rumble teams in their Linode dashboard.
@@ -62,6 +63,7 @@ ssh_options[:keys] = ["~/.ssh/id_rsa"]
 set :scm, :git
 set :repository, "git@github.com:railsrumble/#{GITHUB_REPOSITORY_NAME}.git"
 set :branch, "master"
+set :whenever_command, "bundle exec whenever"
 
 # Roles
 role :app, LINODE_SERVER_HOSTNAME
