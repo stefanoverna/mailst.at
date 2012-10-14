@@ -4,7 +4,7 @@ Mailstat::Application.routes.draw do
   devise_for :admin_users, ActiveAdmin::Devise.config
 
   devise_for :users
-  resources :mailboxes do
+  resources :mailboxes, except: :index do
     member do
       get :refresh_folders
     end
