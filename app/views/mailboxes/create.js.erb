@@ -1,10 +1,40 @@
-- if @mailbox.credentials_verified?
-  - if @mailbox.credentials_valid?
-    h1= t "mailbox.credentials_verification.success", default: "Credentials valid!"
-    = link_to t("mailbox.credentials_verification.edit_folders", default: "Setup your folders"), edit_mailbox_path(@mailbox)
-  - else
-    h1= t "mailbox.credentials_verification.failure", default: "Credentials invalid!"
-    = link_to t("mailbox.credentials_verification.change_credentials", default: "Change credentials"), edit_mailbox_path(@mailbox)
-- else
-  p.loading data-check-mailbox-verification=@mailbox.id
+<% if @mailbox.valid? %>
+  var spinner = null;
 
+  $(".submission").fadeOut(function() {
+    $(".loading").fadeIn(function() {
+      $spinner = $(".spinner")
+      if (!$spinner.data("spinner")) {
+        spinner = new Spinner().spin($spinner.get(0))
+        $spinner.data("spinner", spinner)
+      }
+    });
+  });
+
+  var statusCheck = function(cb) {
+    $.ajax({
+      url: "<%= j mailbox_path(@mailbox) %>",
+      dataType: "json",
+      success: function (data) {
+        if (!data.mailbox.credentials_verified) {
+          after(3000, function() { statusCheck(cb); });
+        } else if (!data.mailbox.credentials_valid) {
+          alert("Credentials appear to be invalid! Please try again!");
+          $(".loading").hide(); $(".submission").show();
+        } else {
+          cb(data)
+        }
+      },
+      error: function() {
+        console.log("FOCK");
+      }
+    });
+  };
+
+  statusCheck(function() {
+    $("#ajax").replaceWith("<%= j render "folders_form", mailbox: @mailbox %>");
+  });
+
+<% else %>
+  $("#ajax").replaceWith("<%= j render "connection_params_form", mailbox: @mailbox %>");
+<% end %>

@@ -4,5 +4,5 @@ class User < ActiveRecord::Base
 
   attr_accessible :email, :password, :password_confirmation, :remember_me, :first_name, :last_name
 
-  has_many :mailboxes
+  has_many :mailboxes, dependent: :destroy
 end

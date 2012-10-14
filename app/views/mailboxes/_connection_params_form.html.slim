@@ -1,25 +1,30 @@
-= t "mailbox.connection_params.intro"
+#ajax
+  .intro= t "mailbox.connection_params.intro"
 
-.two-cols
-  section
-    = simple_nested_form_for mailbox do |f|
+  .two-cols
+    section#connection-params-form.mailbox-form
+      = simple_nested_form_for mailbox, remote: true do |f|
 
-      = form_error_messages(f, mailbox)
+        = form_error_messages(f, mailbox)
 
-      = field_set_tag t("mailbox.connection_params.account_name"), class: "account-name" do
-        = f.input :label
+        = field_set_tag t("mailbox.connection_params.account_name"), class: "account-name" do
+          = f.input :label
 
-      = field_set_tag t("mailbox.connection_params.connection_params"), class: "connection-params" do
-        = f.input :host
-        = f.input :username
-        = f.input :password
-        = f.input :port
-        = f.input :encryption, as: :select, collection: Mailbox.allowed_encryptions, include_blank: false
+        = field_set_tag t("mailbox.connection_params.connection_params"), class: "connection-params" do
+          = f.input :host
+          = f.input :username
+          = f.input :password
+          = f.input :port
+          = f.input :encryption, as: :select, collection: Mailbox.allowed_encryptions, include_blank: false
 
-      footer
-        = f.button :submit
-  aside
-    - 3.times do |i|
-      h3= t "mailbox.connection_params.block#{i}.title"
-      .description= t "mailbox.connection_params.block#{i}.description"
+        footer
+          .submission
+            = f.button :submit
+          .loading
+            .spinner
+            ' Verifying connection parameters... please wait.
+    aside
+      - 3.times do |i|
+        h3= t "mailbox.connection_params.block#{i}.title"
+        .description= t "mailbox.connection_params.block#{i}.description"
 

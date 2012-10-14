@@ -1,8 +1,8 @@
 class Mailbox < ActiveRecord::Base
   attr_accessible :label, :encryption, :host, :password, :port, :username, :folders_attributes, :timezone, :report_time_hour
   belongs_to :user
-  has_many :jobs
-  has_many :folders
+  has_many :jobs, dependent: :destroy
+  has_many :folders, dependent: :destroy
   accepts_nested_attributes_for :folders
 
   validates_presence_of :label, :encryption, :host, :password, :port, :username, :user

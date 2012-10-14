@@ -1,9 +1,24 @@
+.form_errors
+  background-color: #eff9b4
+  padding: 20px
+  margin-bottom: 30px
+
+  p
+    margin-bottom: 3px
+
+  ul
+    margin-top: 10px
+    li
+      margin-left: 20px
+      list-style-type: square
+      margin-bottom: 3px
+
 form
   +pie-clearfix
 
   fieldset
     margin-bottom: 30px
-    padding-bottom: 30px
+    padding: 0px 15px 30px
     border-bottom: 2px solid #ccc
 
     legend
@@ -33,6 +48,12 @@ form
 
     &:first-child
       margin-top: 0
+
+    &.field_with_errors > label
+      border-bottom: 1px solid red
+
+    .error
+      display: none
 
     &> label
       position: absolute

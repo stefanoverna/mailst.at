@@ -9,6 +9,7 @@ $ ->
 
   $("select:visible").chosen()
 
+
   $("[data-check-mailbox-verification]").each ->
     id = $(this).data("check-mailbox-verification")
 

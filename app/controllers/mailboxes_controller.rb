@@ -4,6 +4,7 @@ class MailboxesController < ApplicationController
 
   respond_to :html
   respond_to :json, only: :show
+  respond_to :js, only: [ :create, :update ]
 
   def create
     @mailbox = Mailbox.new(params[:mailbox])
