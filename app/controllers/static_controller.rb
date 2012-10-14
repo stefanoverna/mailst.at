@@ -11,4 +11,7 @@ class StaticController < ApplicationController
     @mailbox = Mailbox.first
     render :template => 'report_mailer/send_daily_summary'
   end
+  
+  def inboxzero
+  end
 end

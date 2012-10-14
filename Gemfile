@@ -24,6 +24,7 @@ gem 'activeadmin-wysihtml5', github: 'stefanoverna/activeadmin-wysihtml5'
 gem 'chosen-rails'
 gem 'roadie'
 gem 'whenever'
+gem 'redcarpet'
 
 group :assets do
   gem 'sass-rails'
