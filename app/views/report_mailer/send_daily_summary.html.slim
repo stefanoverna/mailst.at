@@ -1,0 +1,62 @@
+sass:
+  h1
+    color: red
+    font-size: 15px
+
+h2 Mailst.at report
+
+table
+  tr
+    td= @mailbox.username
+    td= @mailbox.report_time_hour
+
+hr
+
+table
+  thead
+    tr
+      th
+        h3 Inbox
+      th
+        h3 Pro tip
+  tbody
+    tr
+      td
+        p= Faker::Lorem.sentence(40)
+      td
+        - tip = Tip.random
+        - if tip
+          h3= tip.title
+          p= tip.description
+          p= tip.citation
+
+hr
+
+h3 Defer folders
+
+p= Faker::Lorem.sentence(100)
+
+- @mailbox.defer_folders.each do |folder|
+  - overdue = folder.last_snapshot[:old_messages_count]
+  - total = folder.last_snapshot[:messages_count]
+  - messages = folder.last_snapshot[:old_messages]
+  table
+    thead
+      tr
+        th= folder.label.presence || folder.imap_name.presence
+    tbody
+      tr
+        td
+          ul
+            - messages.each do |message|
+              li
+                h4= message.from
+                p= message.subject
+                p= message.date
+        td
+          p
+            Overdue messages
+            = overdue
+            Total messages
+            = total
+
