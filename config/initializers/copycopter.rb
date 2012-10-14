@@ -1,5 +1,5 @@
 CopycopterClient.configure do |config|
-  config.api_key = 'e992b75918f14391c882bfc68e20161b98ddb50908c696b1'
+  config.api_key = '90090cd8dbe727430006a9f9113268e857256dd501b4a1c5'
   config.host = 'wecopter.herokuapp.com'
   config.development_environments = %w(staging)
 end

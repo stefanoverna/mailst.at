@@ -36,7 +36,7 @@ class ImapMailbox
       if result[:messages_count] > 0
         range = 1 .. [result[:messages_count], options[:max_search]].min
 
-        oldest_mails = @imap_client.fetch(range, "BODY[HEADER.FIELDS (From To Subject Date)]").map do |header|
+        oldest_mails = @imap_client.fetch(range, "BODY[HEADER.FIELDS (From To Subject Date Sender)]").map do |header|
             Mail.read_from_string(header.attr.values.first)
         end.select do |mail|
             mail.date.utc < older_than_time.utc

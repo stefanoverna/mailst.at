@@ -50,9 +50,9 @@ p= Faker::Lorem.sentence(100)
           ul
             - messages.each do |message|
               li
-                h4= message.from
-                p= message.subject
-                p= message.date
+                h4= message[:from]
+                p= message[:subject]
+                p= message[:date]
         td
           p
             Overdue messages

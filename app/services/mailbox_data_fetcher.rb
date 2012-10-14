@@ -11,7 +11,7 @@ class MailboxDataFetcher
         summary[:old_messages].map! do |mail|
           {
             subject: mail.subject.to_s,
-            from: mail.from.map(&:to_s),
+            from: mail.header[:from].decoded,
             to: mail.to.map(&:to_s),
             date: mail.date
           }
