@@ -14,6 +14,7 @@
     $.ajax({
       url: "<%= j mailbox_path(@mailbox) %>",
       dataType: "json",
+      cache: false,
       success: function (data) {
         if (!data.mailbox.credentials_verified) {
           after(3000, function() { statusCheck(cb); });
