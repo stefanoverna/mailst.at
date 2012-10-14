@@ -1,3 +1,51 @@
+#show
+  .mailbox-header
+    width: 400px
+    height: 60px
+    line-height: 20px
+    margin-bottom: 20px
+    .mailbox
+      font-size: 20px
+      line-height: 55px
+
+  .mailsquare-cont
+    font-weight: bold
+    .mailsquare.bad
+      +mailsquare($red)
+    .mailsquare.good
+      +mailsquare($green)
+    .mailsquare.warn
+      +mailsquare($yellow)
+
+  .inbox
+    width: 70%
+    .inbox-text
+      +textbox
+    .mailsquare-cont
+      margin-top: 20px
+
+  .protip-cont
+    width: 30%
+    .protip
+      background: $grey
+      padding: 15px
+
+  .defer-header
+    margin-bottom: 10px
+    .defer-text
+      +textbox
+  .defer-cont
+    .title
+      font-weight: bold
+      border-top: 1px solid $grey
+    .defer-box
+      margin-bottom: 10px
+      .mail
+        background: $grey
+        width: 70%
+        margin: 5px 0
+        padding: 5px
+
 #dashboard
   ul
     li
@@ -33,3 +81,4 @@
     a
       margin-left: 10px
       +metro-button(#645642, "Z")
+>>>>>>> 0043e351cb0f392e1b2eb5b7a51dcedb25b892c4
