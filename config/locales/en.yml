@@ -1,8 +1,26 @@
 en:
   mailbox:
+    add_new_title: "Add a new mailbox"
     morning_report: "Morning report"
     inbox_folder: "Inbox folder"
     defer_folders: "Defer folders"
     remove_folder: "Remove this folder"
     add_a_defer_folder: "Add a new Defer folder"
     rename_folder: "Rename?"
+    
+    connection_params:
+      intro: "To effectively be able to help you reching the inbox karma, we need to ask your mailbox access. Follow the instructions to better understand what we need and what we'll do with your private data. We promise to be as careful as we can handling your data."
+      account_name: "Account Name"
+      connection_params: "Connection Parameters"
+      
+      block0:
+        title: "Why mailbox access?"
+        description: "To effectively help you in Inbox Zero training we need to gather some data from your mailbox, and the only way to do that is by having access to your email."
+        
+      block1:
+        title: "What will we take?"
+        description: "We'll read the number of email for each folder and we'll also read some email's header info. We'll need them to give you an insightful report every day."
+        
+      block2:
+        title: "What we'll NOT do?"
+        description: "We'll NEVER look into your mail content or attachements, we'll not store your emails, nor we'll use them in any way. If you're scared you can immediately delete your account. We'll delete EVERYTHING related to you."
