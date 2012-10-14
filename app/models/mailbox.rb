@@ -157,4 +157,8 @@ class Mailbox < ActiveRecord::Base
     end
   end
 
+  def has_report_infos?
+    self.timezone.present? && self.report_time_hour.present && self.seconds_between_reports.present?
+  end
+
 end

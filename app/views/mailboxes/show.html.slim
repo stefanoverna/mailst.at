@@ -39,7 +39,7 @@ header#main-header
                 td.from= message.from
                 td.subject= message.subject
                 td.old =t("mailbox.report.time_ago", time: time_ago_in_words(message.date))
-- elsif @mailbox.credentials_valid?
+- elsif @mailbox.credentials_valid? && @mailbox.has_report_infos?
   .info-panel
     h3 =t("mailbox.report.first_report", time: time_ago_in_words(@mailbox.next_report_time))
 - else
