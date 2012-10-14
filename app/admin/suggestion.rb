@@ -1,15 +1,16 @@
-ActiveAdmin.register Tip do
+ActiveAdmin.register Suggestion do
   index do
-    column :title
+    column :description
+    column :status
     default_actions
   end
 
   form do |f|
     f.inputs "Details" do
-      f.input :title
+      f.input :status
       f.input :description
-      f.input :citation
     end
     f.buttons
   end
 end
+

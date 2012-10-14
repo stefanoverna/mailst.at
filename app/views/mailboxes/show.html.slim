@@ -29,15 +29,16 @@ header#main-header
 
     .inner
       - @mailbox.sorted_folders.each do |folder|
-        - if folder.priority_messages.any?
-          section.folder class=folder.status class=("inbox" if folder.is_inbox)
-            h3= folder.nice_name
-            table
-              - folder.priority_messages.each do |message|
-                tr
-                  td.from= message.from
-                  td.subject= message.subject
-                  td.old =t("mailbox.report.time_ago", time: time_ago_in_words(message.date))
+        section.folder class=folder.status class=("inbox" if folder.is_inbox)
+          h3= folder.nice_name
+          - if folder.suggestion.present?
+            .suggestion= folder.suggestion.description
+          table
+            - folder.priority_messages.each do |message|
+              tr
+                td.from= message.from
+                td.subject= message.subject
+                td.old =t("mailbox.report.time_ago", time: time_ago_in_words(message.date))
 - else
   .info-panel
     h3 =t("mailbox.report.first_report", time: time_ago_in_words(@mailbox.next_report_time))

@@ -56,6 +56,31 @@ class Folder < ActiveRecord::Base
     end
   end
 
+  def suggestion_status
+    o = overdue_messages_count
+    t = total_messages_count
+
+    if o == 0 && t == 0
+      0
+    elsif o == 0 && t <= 20
+      1
+    elsif o <= 20 && t <= 20
+      2
+    elsif o <= 20 && t <= 50
+      3
+    elsif o <= 50 && t <= 50
+      4
+    elsif o <= 50 && t <= 100
+      5
+    else
+      6
+    end
+  end
+
+  def suggestion
+    Suggestion.where(status: suggestion_status).sample
+  end
+
   def priority_messages
     last_snapshot[:old_messages].map do |m|
       MessagePresenter.new(m)
