@@ -1,5 +1,9 @@
 module ApplicationHelper
 
+  def t(name, options = {})
+    I18n.t(name, options).html_safe
+  end
+
   def form_error_messages(form, resource)
     if resource.errors.present?
       content_tag :div, {:class => "form_errors" } do
