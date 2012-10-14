@@ -1,63 +1,150 @@
 sass:
-  h1
-    color: red
-    font-size: 15px
+  $green: #7D9D2F
+  $yellow: #FF8F30
+  $red: #FF0029
+  $grey: #CDD0CB
+  $darkgrey: #8B8683
+  $azure: #26ADE4
 
-h2 Mailst.at report
+  #content
+    width: 740px
+    margin: 0 auto
 
-table
-  tr
-    td= @mailbox.username
-    td= @mailbox.report_time_hour
+    #mailbox-report
+      line-height: 35px
+      margin-bottom: 30px
+      border-bottom: 2px solid #ccc
+      color: #555
+      font-size: 15px
 
-hr
+      h3.welcome
+        margin-bottom: 0
+        font-size: 20px
 
-table
-  thead
-    tr
-      th
-        h3 Inbox
-      th
-        h3 Pro tip
-  tbody
-    tr
-      td
-        p= Faker::Lorem.sentence(40)
-      td
-        - tip = Tip.random
-        - if tip
-          h3= tip.title
-          p= tip.description
-          p= tip.citation
+      .timestamp
 
-hr
+      .at-a-glance
+        margin-bottom: 40px
 
-h3 Defer folders
+        h3
+          font-size: 30px
+          font-weight: 300
+          line-height: 35px
+          border-bottom: 2px solid #ccc
 
-p= Faker::Lorem.sentence(100)
+        tr
+          margin-bottom: 5px
+          background-color: #eee
+          font-size: 20px
+          line-height: 40px
 
-- @mailbox.defer_folders.each do |folder|
-  - overdue = folder.last_snapshot[:old_messages_count]
-  - total = folder.last_snapshot[:messages_count]
-  - messages = folder.last_snapshot[:old_messages]
-  table
-    thead
-      tr
-        th= folder.label.presence || folder.imap_name.presence
-    tbody
-      tr
-        td
-          ul
-            - messages.each do |message|
-              - presenter = MessagePresenter.new(message)
-              li
-                h4= presenter.from
-                p= message[:subject]
-                p= message[:date]
-        td
-          p
-            Overdue messages
-            = overdue
-            Total messages
-            = total
+          .label
+            padding-left: 15px
 
+          .total, .overdue
+            color: white
+
+          .overdue
+            width: 54px
+            padding-left: 20px
+
+          .total
+            width: 60px
+            padding-right: 20px
+            color: rgba(white, 0.8)
+
+          &.success
+            .total
+              background-color: $green
+            .overdue
+              background-color: $green
+
+          &.failure
+            .total
+              background-color: $red
+            .overdue
+              background-color: $red
+
+          &.warning
+            .total
+              background-color: $yellow
+            .overdue
+              background-color: $yellow
+
+          td
+            text-align: center
+
+
+
+      .tip-of-the-day
+        background-color: #eee
+        border-top: 2px solid #555
+        border-bottom: 2px solid #555
+        padding: 30px
+
+        h4
+          font-size: 15px
+          color: #444
+          font-weight: bold
+
+        h3
+          font-size: 20px
+          color: #222
+          margin-bottom: 3px
+
+        .description
+          line-height: 19px
+          font-size: 18px
+          color: #444
+
+      .folder
+        margin-bottom: 30px
+
+        table
+          width: 100%
+
+          td
+            border-bottom: 1px solid #ccc
+            padding: 7px 9px
+            vertical-align: top
+
+            &.old
+              width: 130px
+
+#content
+  h1 #{@mailbox.label} Report
+
+  #mailbox-report
+    h3.welcome Good morning, #{@mailbox.user.first_name}!
+    p this summary has been taken at:
+    .timestamp= l(@mailbox.last_mailbox_fetch_at, format: :short)
+
+    .link-to-site= link_to "You can read this email on Mailstat website too", mailbox_url(@mailbox, :protocol => 'https')
+
+    .block.at-a-glance
+      h3 Your mailbox, at a glance
+      table
+        - @mailbox.sorted_folders.each do |folder|
+          tr class=folder.status class=("inbox" if folder.is_inbox)
+            td.label= folder.nice_name
+            - overdue_text = folder.overdue_messages_count >= 100 ? "+100" : folder.overdue_messages_count.to_s
+            td.overdue= overdue_text
+            td.total= folder.total_messages_count
+
+    - tip = Tip.random
+    - if tip.present?
+      .block.tip-of-the-day
+        h4 Pro-tip of the day
+        h3= link_to tip.title, tip.citation
+        .description= tip.description
+
+    - @mailbox.sorted_folders.each do |folder|
+      - if folder.priority_messages.any?
+        .folder class=folder.status class=("inbox" if folder.is_inbox)
+          h3= folder.nice_name
+          table
+            - folder.priority_messages.each do |message|
+              tr
+                td.from= message.from
+                td.subject= message.subject
+                td.old #{time_ago_in_words(message.date)} ago
