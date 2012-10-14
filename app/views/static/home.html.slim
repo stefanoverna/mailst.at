@@ -1,20 +1,22 @@
 #home
-  .vote
-    a href='http://railsrumble.com/entries/32-welaika-2'
-      = t "home.please_vote"
 
-  h2.clear= t "home.tagline"
-  .window
+  .wrap
+    = render "layouts/flash", flash: flash
+
+    .vote
+      a href='http://railsrumble.com/entries/32-welaika-2'
+        = t "home.please_vote"
+
+    h2= t "home.tagline"
     h3= t "home.subtagline"
 
-  h2= t "home.start_today"
+  .bar
+    ul.image-boxes.wrap
+      li= render "home/highlight", name: t("home.highlight1.title"), text: t("home.highlight1.description"), image: "protips.png"
+      li= render "home/highlight", name: t("home.highlight2.title"), text: t("home.highlight2.description"), image: "priority.png"
+      li= render "home/highlight", name: t("home.highlight3.title"), text: t("home.highlight3.description"), image: "progress.png"
 
-  .window
+  .wrap
     h3= t "home.register_why"
 
-  .mail-highlights
-    = render "home/highlight", name: t("home.highlight1.title"), text: t("home.highlight1.description"), classe: "tip"
-    = render "home/highlight", name: t("home.highlight2.title"), text: t("home.highlight2.description"), classe: "priority"
-    = render "home/highlight", name: t("home.highlight3.title"), text: t("home.highlight3.description"), classe: "progress"
-
-  .signup= t "home.signup"
+    = link_to t("home.start_today"), new_user_registration_path, class: "signup"

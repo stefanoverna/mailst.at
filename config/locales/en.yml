@@ -2,19 +2,18 @@ en:
   home:
     please_vote: "Please take the time to vote us for the Rails Rumble 2012!"
     tagline: "Kill your inbox, raise your karma"
-    subtagline: "Mailstat helps you fix your email overload problems, infinite-loop searches, forgotten tasks and the consequent waste of time by enforcing good practices taken from the internet-famous Inbox Zero manifest"
+    subtagline: "Mailstat helps you fix your email overload problems, infinite-loop searches, forgotten tasks by enforcing good practices taken from the internet-famous Inbox Zero manifest"
     start_today: "Start today!"
     register_why: "Register to Mailstat, specify your inbox and \"to be done\" folders, and start receiving your report with the following content:"
-    signup: "Signup now!"
-    
+
     highlight1:
       title: "Pro Tips"
       description: "Get one heroic uber pro tip directly from the Inbox Zero phylosophy archives"
-      
+
     highlight2:
       title: "High priority mails"
       description: "Have a quick overview of what communications require your attention (a.k.a. they're so OLD)"
-      
+
     highlight3:
       title: "Track your progress"
       description: "Get a daily infographic on how much work still remains to be done"
@@ -38,6 +37,7 @@ en:
       intro: "To effectively be able to help you reaching the inbox karma, we need to ask your mailbox access. Follow the instructions to better understand what we need and what we'll do with your private data. We promise to be more careful than anything handling your data."
       account_name: "Account Name"
       connection_params: "Connection Parameters"
+      verifying: "Verifying connection parameters... please wait."
 
       block0:
         title: "Why mailbox access?"
@@ -50,23 +50,40 @@ en:
       block2:
         title: "What we'll NOT do?"
         description: "We'll NEVER look into your mail content or attachements, we'll not store your emails, nor we'll use them in any way. If you're scared you can immediately delete your account. We'll delete EVERYTHING related to you."
-        
+
     folders:
       title: "Folder settings"
+      loading: "Refreshing IMAP folders.. please wait."
       folders:
         intro: "Start to get more out of your inbox while grasping some serious Inbox Zero concept. Understand how to effectively use the inbox and other \"defer\" folders. Go on, read with attention and open mind!"
-        
+
       inbox_folder:
         title: "Inbox setup"
         description: "Select your inbox between your mailbox folders:"
-        
+
       defer_folders:
         title: "Defer folders"
         description: "Select the folders that you use to procrastinate. For each defer folder, select the time within you need to answer and give a label if you want to."
-        
+
       morning_report:
         title: "Daily report"
         description: "Select your timezone and your preferred time to get the daily report. Decide also if you want to get email every day or less."
-        
+
+    report:
+      title: "%{label} report"
+      mail_settings: "Mailbox settings"
+      glance: "Your mailbox, at a glance"
+      good_morning: "Good morning, %{username}!"
+      protip: "Pro-tip of the day"
+      time_ago: "%{time} ago"
+      first_report: "Your first Morning Report will arrive at your inbox in %{time}!"
+      folder0: "Excellent job! Consider getting the daily report less frequently, if you feel confident."
+      folder1: "Your folder it's very good! Keep up the good work! Try to concentrate the time you spend on your email to reach true inbox zero."
+      folder2: "Warning, you have someone waiting for your answers. Don't worry though in a couple of concentrated hours you'll be back on track!"
+      folder3: "Warning, your queues are starting to get longer. Plan to spend some time on email or you'll be soon in a mess."
+      folder4: "It's time to stop and have some mail answered. You have lots of people waiting for your answers. Probably you'll need at least half a day of work to clean up everything."
+      folder5: "It's important that you stop your daily routine and do a hard work on email. Consider archiving everything and starting from scratch, could be a good option."
+      folder6: "It's time to have a fresh start. Archive all your emails and start from scratch!"
+
   footer:
     copyright: "Made by weLaika for RailsRumble 2012"

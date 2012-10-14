@@ -1,5 +1,6 @@
 class StaticController < ApplicationController
   def home
+    render "home", layout: "homepage"
   end
 
   def dashboard
