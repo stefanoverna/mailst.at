@@ -50,6 +50,22 @@ class Mailbox < ActiveRecord::Base
     CheckMailboxJob.where(mailbox_id: self)
   end
 
+  def invalidate_credentials!
+    check_jobs.destroy_all
+    invalidate_folders!
+  end
+
+  def invalidate_folders!
+    invalidate_fetch!
+    folders.destroy_all
+  end
+
+  def invalidate_fetch!
+    last_mailbox_fetch_at = nil
+    last_report_sent_at = nil
+    save
+  end
+
   def latest_completed_check_job
     check_jobs.completed.first
   end

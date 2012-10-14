@@ -3,8 +3,9 @@
     h1= t "mailbox.connection_params.title"
     .actions
       - unless @mailbox.new_record?
-        = link_to t("mailbox.connection_params.change_folders"), edit_mailbox_path(@mailbox, folders: true)
-        = link_to t("mailbox.folders.delete"), mailbox_path(@mailbox), method: :delete, confirm: t("mailbox.folders.delete_confirm"), class: "delete"
+        - if @mailbox.credentials_valid?
+          = link_to t("mailbox.connection_params.change_folders"), edit_mailbox_path(@mailbox, folders: true)
+        = link_to t("mailbox.connection_params.delete"), mailbox_path(@mailbox), method: :delete, confirm: t("mailbox.connection_params.delete_confirm"), class: "delete"
 
     .intro= t "mailbox.connection_params.intro"
 
