@@ -39,7 +39,12 @@ header#main-header
                 td.from= message.from
                 td.subject= message.subject
                 td.old =t("mailbox.report.time_ago", time: time_ago_in_words(message.date))
-- else
+- elsif @mailbox.credentials_valid?
   .info-panel
     h3 =t("mailbox.report.first_report", time: time_ago_in_words(@mailbox.next_report_time))
+- else
+  .info-panel
+    h3 =t("mailbox.report.invalid_mailbox")
+    = link_to t("mailbox.report.configure_inbox"), edit_mailbox_path(@mailbox)
+
 
