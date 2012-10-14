@@ -1,14 +1,3 @@
-=homesection
-  margin: 20px auto
-  background: image-url('exclusive_paper.png')
-  font-family: Georgia
-  line-height: 25px
-  font-size: 19px
-  color: #444
-  text-align: justify
-  padding: 40px
-  width: 100%
-
 #home
   padding: 30px 0
   text-align: center
@@ -19,16 +8,8 @@
   h4.button
     margin-bottom: 20px
 
-  #problem-focus
-    width: 100%
-    padding: 5px
-    margin-bottom: 20px
-    +homesection
-    h3
-      color: $yellow
-
   .stepover
-    width: 100%
+    width: $width
     text-align: center
     margin-bottom: 30px
     height: 100px
@@ -36,33 +17,11 @@
   .signup
     font-size: 48px !important
     color: #fff
-    +metro-button($darkgrey, ".")
+    +metro-button($darkgrey, "U")
 
-  #not
-    +homesection
+  .window
+    width: $width - 20
+    padding: 10px
     h3
-      color: $red
-
-  #be
-    +homesection
-    h3
-      color: $green
-
-  p, ol
-    margin-bottom: 20px
-
-  ul
-    li
-      list-style-type: disc
-      margin-left: 20px
-      margin-bottom: 10px
-
-      strong
-        font-weight: bold
-        padding-right: 6px
-
-        &:after
-          content: ": "
-
-
+      margin-bottom: 0
 

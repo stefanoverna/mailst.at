@@ -1,4 +1,24 @@
 en:
+  home:
+    please_vote: "Please take the time to vote for us for the Rails Rumble 2012!"
+    tagline: "Kill your inbox, raise your karma"
+    subtagline: "Mailstat helps you fix your email overload problems, infinite-loop searches, forgotten tasks and the consequent waste of time by enforcing good practices taken from the internet-famous Inbox Zero manifest"
+    start_today: "Start today!"
+    register_why: "Register to Mailstat, specify your inbox and \"to be done\" folders, and start receiving your report with the following content:"
+    
+    highlight1:
+      title: "Pro Tips"
+      description: "Get one heroic uber pro tip directly from the Inbox Zero phylosophy archives"
+      
+    highlight2:
+      title: "High priority mails"
+      description: "Have a quick overview of what communications require your attention (a.k.a. they're so OLD)"
+      
+    highlight3:
+      title: "Track your progress"
+      description: "Get a daily infographic on how much work still remains to be done"
+
+
   mailbox:
     add_new_title: "Add a new mailbox"
     morning_report: "Morning report"
@@ -9,6 +29,7 @@ en:
     rename_folder: "Rename?"
 
     connection_params:
+      title: "Mailbox settings"
       intro: "To effectively be able to help you reching the inbox karma, we need to ask your mailbox access. Follow the instructions to better understand what we need and what we'll do with your private data. We promise to be as careful as we can handling your data."
       account_name: "Account Name"
       connection_params: "Connection Parameters"
@@ -26,6 +47,7 @@ en:
         description: "We'll NEVER look into your mail content or attachements, we'll not store your emails, nor we'll use them in any way. If you're scared you can immediately delete your account. We'll delete EVERYTHING related to you."
         
     folders:
+      title: "Folder settings"
       folders:
         intro: "To start getting more out of your inbox you have to start grasping some serious Inbox Zero concept. Here we'll start to understand how to effectively use the inbox and other \"defer\" folders. Go on, read with attention and open mind!"
         
@@ -43,11 +65,5 @@ en:
         title: "Daily report"
         description: "What we'll do together is to learn the inbox zero principles. How we plan to do this? Every day we'll send you an email that recaps the status of your mailbox and suggests you which steps you should take to get better. Our objective is that you become indipendent from our service and go on with your own mailbox managing technique."
         
-        
-        
-        
-        
-        
-        
-        
-        
+  footer:
+    copyright: "Made by weLaika for RailsRumble 2012"
