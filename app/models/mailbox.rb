@@ -96,7 +96,7 @@ class Mailbox < ActiveRecord::Base
     now_utc = DateTime.now.utc
     puts "Ora sono le #{now_utc.hour} UTC"
     timezone_identifiers = Mailbox.select("DISTINCT(timezone)").map(&:timezone)
-    timezone_identifiers.each do |timezone_identifier|
+    timezone_identifiers.select(&:present?).each do |timezone_identifier|
       timezone = TZInfo::Timezone.get(timezone_identifier)
       now_local = timezone.utc_to_local(now_utc)
       puts "In #{timezone_identifier} ora sono le #{now_local.hour}"
