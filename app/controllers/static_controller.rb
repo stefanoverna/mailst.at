@@ -14,4 +14,7 @@ class StaticController < ApplicationController
   
   def inboxzero
   end
+  
+  def privacy
+  end
 end
