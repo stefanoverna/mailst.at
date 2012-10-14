@@ -13,6 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require chosen-jquery
+//= require spin
 //= require_tree ./libs
 //= require jquery_nested_form
 //= require_tree .

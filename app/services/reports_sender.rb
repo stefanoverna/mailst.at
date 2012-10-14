@@ -13,6 +13,7 @@ class ReportsSender
         mailbox.update_attribute(:last_report_sent_at, Time.now)
       rescue Exception => e
         puts "fallito invio a #{mailbox.username}:\t#{e.class} - #{e.message}"
+        puts e.backtrace.join("\n")
       end
     end
   end
