@@ -1,16 +1,9 @@
 form.edit_mailbox
 
-  fieldset
-    margin-bottom: 30px
-    padding-bottom: 30px
-    border-bottom: 2px solid #ccc
 
-    legend
-      font-size: 30px
-      margin-bottom: 20px
-
-    &> .input, &>.fields
-      margin-left: 50px
+  fieldset > .input,
+  fieldset >.fields
+    margin-left: 50px
 
   .fields
     padding-bottom: 20px
@@ -49,16 +42,20 @@ form.edit_mailbox
     &> .input
       float: left
 
-    &> .rename-folder
+    &> .rename-folder-check
       float: left
       margin-left: 15px
       font-size: 12px
       line-height: 25px
 
+  .rename-folder
+    margin-top: 10px
+
   .add_nested_fields
     margin-top: 20px
     +metro-button(#645642, "Z")
     margin-left: 50px
+    float: right
 
   select.max_seconds_to_process
     width: 120px
@@ -77,3 +74,7 @@ form.edit_mailbox
     content: "w"
   fieldset.defer-folders legend::before
     content: "N"
+  fieldset.account-name legend::before
+    content: "_"
+  fieldset.connection-params legend::before
+    content: "@"

@@ -1,20 +1,19 @@
-
 = simple_nested_form_for mailbox do |f|
 
   = form_error_messages(f, mailbox)
 
   - if params[:connection_params]
-    = field_set_tag do
+    = field_set_tag t("mailbox.account_name"), class: "account-name" do
       = f.input :label
 
-    = field_set_tag "Connection params" do
+    = field_set_tag t("mailbox.connection_params"), class: "connection-params" do
       = f.input :host
       = f.input :username
       = f.input :password
       = f.input :port
       = f.input :encryption, as: :select, collection: Mailbox.allowed_encryptions, include_blank: false
 
-  - else
+  - if params[:folders]
     - if @mailbox.credentials_valid?
 
       = field_set_tag t("mailbox.morning_report"), class: "morning-report" do
@@ -33,7 +32,7 @@
         = f.simple_fields_for :folders, @mailbox.defer_folders do |ff|
           .imap-name
             = ff.input :imap_name, collection: ff.object.available_imap_folders(@mailbox), include_blank: false
-            .rename-folder
+            .rename-folder-check
               = label_tag :"rename_#{ff.object.id}" do
                 =' check_box_tag :"rename_#{ff.object.id}", "1", ff.object.label.present?, data: { toggle_dom: "toggable_#{ff.object.id}" }
                 =' t("mailbox.rename_folder")
@@ -47,4 +46,5 @@
 
         = f.link_to_add t("mailbox.add_a_defer_folder"), :folders
 
-  = f.button :submit
+  footer
+    = f.button :submit

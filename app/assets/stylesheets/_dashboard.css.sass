@@ -1,0 +1,35 @@
+#dashboard
+  ul
+    li
+      margin-bottom: 10px
+      .mailbox
+        display: block
+        background-color: #eee
+        padding: 10px 10px
+        padding-left: 20px
+        text-decoration: none
+        line-height: 40px
+        position: relative
+
+        &:hover
+          background-color: #ddd
+
+        .title
+          font-size: 30px
+          font-weight: 300
+
+        .status
+          position: absolute
+          top: 0px
+          right: 0px
+          width: 80px
+          bottom: 0px
+          background-color: #7bb337
+
+  footer
+    margin-top: 20px
+    font-size: 15px
+
+    a
+      margin-left: 10px
+      +metro-button(#645642, "Z")

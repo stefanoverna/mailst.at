@@ -12,6 +12,7 @@ en:
       default_message: "Please review the problems below:"
     labels:
       mailbox:
+        label: "Name"
         folders:
           imap_name: "IMAP Folder"
           max_seconds_to_process: "Max. defer time"
