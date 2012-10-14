@@ -20,6 +20,7 @@ class MailboxDataFetcher
         folder.update_attribute(:last_snapshot, summary)
       end
     end
+    mailbox.update_attribute(:last_mailbox_fetch_at, DateTime.now)
     box.disconnect
   end
 end

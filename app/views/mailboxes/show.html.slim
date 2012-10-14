@@ -1,58 +1,74 @@
-#show
-  h1 Dashboard
+header#main-header
+  h1 #{@mailbox.label} Report
+  .actions
+    = link_to "Mailbox settings", edit_mailbox_path(@mailbox, folders: true)
 
-  .mailbox-header
-    .mailbox.alignleft
-      = "user@example.com"
-    .edit.alignright
-      = link_to "EDIT", edit_mailbox_path(@mailbox, folders: true)
-    .timestamp.alignright
-      = "Screenshotted @"
-      br
-      = "Mon 1st Gen, 1970"
+- if @mailbox.last_mailbox_fetch_at
+  section#mailbox-report
+    .inner
 
-  .box
-    .inbox.alignleft
-      h3= "Inbox"
-      .inbox-text
-        = Faker::Lorem.sentence(40)
-      .mailsquare-cont.alignright
-        = "Total"
-        .mailsquare.good
-          = 50
-      .mailsquare-cont.alignright
-        = "Overdue"
-        .mailsquare.warn
-          = 10
-    .protip-cont.alignleft
-      h3= "Pro tip"
-      .protip
-        .title= Faker::Name.name
-        = Faker::Lorem.sentence(30)
+      header.mail-header.block
+        h3.welcome Good morning, #{current_user.first_name}!
+        .timestamp= l(@mailbox.last_mailbox_fetch_at, format: :short)
 
-  .box
-    .defer-header
-      h3= "Defer folders"
-      .defer-text
-        = Faker::Lorem.sentence(40)
-    - 2.times do
-      .defer-cont.clear
-        h4.title= Faker::Name.name
-        ul.defer-box
-          .mailsquare-cont.alignright
-            = "Total"
-            .mailsquare.good
-              = 50
-          .mailsquare-cont.alignright
-            = "Overdue"
-            .mailsquare.bad
-              = 10
-          - 3.times do
-            li.mail
-              .icons= "l"
-              .p
-                = Faker::Lorem.words(1)[0]
-                = " / "
-                = Faker::Name.name
-              .subject
-                = Faker::Lorem.sentence(3)
+      .block.at-a-glance
+        h3 Your mailbox, at a glance
+        ul
+          - @mailbox.sorted_folders.each do |folder|
+            li class=folder.status class=("inbox" if folder.is_inbox)
+              .label= folder.nice_name
+              .total= folder.total_messages_count
+              .overdue= overdue_l(folder.overdue_messages_count)
+
+    - tip = Tip.random
+    - if tip.present?
+      .block.tip-of-the-day
+        h3 Pro-tip of the day
+        h4= link_to tip.title, tip.citation
+        .description= tip.description
+
+    .box
+      .inbox.alignleft
+        h3= "Inbox"
+        .inbox-text
+          = Faker::Lorem.sentence(40)
+        .mailsquare-cont.alignright
+          = "Total"
+          .mailsquare.good
+            = 50
+        .mailsquare-cont.alignright
+          = "Overdue"
+          .mailsquare.warn
+            = 10
+      .protip-cont.alignleft
+        h3= "Protip of the day:"
+        .protip
+          .title= Faker::Name.name
+          = Faker::Lorem.sentence(30)
+
+    .box
+      .defer-header
+        h3= "Defer folders"
+        .defer-text
+          = Faker::Lorem.sentence(40)
+      - 2.times do
+        .defer-cont.clear
+          h4.title= Faker::Name.name
+          ul.defer-box
+            .mailsquare-cont.alignright
+              = "Total"
+              .mailsquare.good
+                = 50
+            .mailsquare-cont.alignright
+              = "Overdue"
+              .mailsquare.bad
+                = 10
+            - 3.times do
+              li.mail
+                .icons= "l"
+                .p
+                  = Faker::Lorem.words(1)[0]
+                  = " / "
+                  = Faker::Name.name
+                .subject
+                  = Faker::Lorem.sentence(3)

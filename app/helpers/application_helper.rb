@@ -14,4 +14,12 @@ module ApplicationHelper
   def quote(sentence)
     "\"#{sentence.gsub('.','')}\""
   end
+
+  def overdue_l(count)
+    if count == 100
+      "+100"
+    else
+      count
+    end
+  end
 end

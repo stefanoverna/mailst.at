@@ -98,4 +98,8 @@ class Mailbox < ActiveRecord::Base
     ReportMailer.send_daily_summary(self).deliver
   end
 
+  def sorted_folders
+    [ inbox_folder ] + defer_folders
+  end
+
 end

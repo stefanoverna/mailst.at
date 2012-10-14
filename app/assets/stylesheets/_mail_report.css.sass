@@ -1,3 +1,180 @@
+#mailbox-report
+  border: 1px solid #eee
+  width: 700px
+  margin: 0 auto
+  +box-shadow(rgba(black, 0.2) 0 2px)
+  position: relative
+
+  .inner
+    padding: 30px
+
+  header
+    +pie-clearfix
+    line-height: 35px
+    margin-bottom: 30px
+    border-bottom: 2px solid #ccc
+    color: #555
+    font-size: 15px
+
+    h3.welcome
+      float: left
+      margin-bottom: 0
+      font-size: 20px
+
+    .timestamp
+      float: right
+
+      &:before
+        content: "D"
+        font-family: Entypo
+        padding-right: 5px
+        font-size: 40px
+        display: inline-block
+        line-height: 11px
+
+  .at-a-glance
+    margin-bottom: 30px
+
+    h3
+      font-size: 25px
+      line-height: 35px
+      border-bottom: 2px solid #ccc
+
+    li
+      margin-bottom: 5px
+      background-color: #eee
+      font-size: 20px
+      line-height: 40px
+      +clearfix
+
+      .label
+        float: left
+        padding-left: 15px
+
+        &:before
+          content: "w"
+          font-family: Entypo
+          padding-right: 6px
+          font-size: 48px
+          display: inline-block
+          line-height: 16px
+          width: 32px
+
+      .total, .overdue
+        float: right
+        color: white
+        text-align: right
+
+      .overdue
+        width: 54px
+        padding-left: 20px
+
+      .total
+        width: 60px
+        text-align: left
+        padding-right: 20px
+        color: rgba(white, 0.8)
+
+        &:before
+          content: "/"
+          padding: 0 4px
+
+      &.inbox .label:before
+        content: "%"
+
+      &.success
+        .total
+          background-color: $green
+        .overdue
+          background-color: $green
+
+      &.failure
+        .total
+          background-color: $red
+        .overdue
+          background-color: $red
+
+      &.warning
+        .total
+          background-color: $yellow
+        .overdue
+          background-color: $yellow
+
+  .tip-of-the-day
+    background-color: #eee
+    border-top: 3px solid #555
+    padding: 30px
+
+  .mailbox-header
+    width: 70%
+    height: 60px
+    line-height: 20px
+    margin-bottom: 20px
+
+    .mailbox
+      font-size: 20px
+      line-height: 55px
+
+
+  .edit
+    +metro-button($darkgrey, "j")
+
+  .mailsquare-cont
+    font-weight: bold
+    .mailsquare.bad
+      +mailsquare($red)
+    .mailsquare.good
+      +mailsquare($green)
+    .mailsquare.warn
+      +mailsquare($yellow)
+
+  // .inbox
+  //   width: 70%
+  //   .inbox-text
+  //     +textbox
+  //   .mailsquare-cont
+  //     margin-top: 20px
+
+  .protip-cont
+    width: 29%
+    margin-left: .5%
+    .protip
+      background: $grey
+      padding: 15px
+      .title
+        font-weight: bold
+
+  .defer-header
+    margin-bottom: 10px
+    .defer-text
+      +textbox
+  .defer-cont
+    .title
+      font-weight: bold
+      border-top: 1px solid $grey
+    .defer-box
+      margin-bottom: 10px
+      .mail
+        position: relative
+        background: $grey
+        width: 70%
+        margin: 5px 0
+        padding: 5px
+        .icon
+          height: 100%
+          width: 5%
+          position: absolute
+        .p
+          position: absolute
+          width: 80%
+          left: 7%
+          top: 15px
+        .subject
+          position: absolute
+          width: 80%
+          left: 7%
+          top: 35px
+
 #mail-report
   // border: 1px solid #ccc
   // padding: 40px

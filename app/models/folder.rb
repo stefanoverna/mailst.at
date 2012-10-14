@@ -25,4 +25,31 @@ class Folder < ActiveRecord::Base
     folders << imap_name if imap_name.present?
     folders
   end
+
+  def nice_name
+    if is_inbox?
+      "Inbox"
+    else
+      label.blank? ? imap_name : label
+    end
+  end
+
+  def total_messages_count
+    last_snapshot[:messages_count] || 0
+  end
+
+  def overdue_messages_count
+    last_snapshot[:old_messages_count] || 0
+  end
+
+  def status
+    if overdue_messages_count == 100
+      :failure
+    elsif overdue_messages_count > 50
+      :warning
+    else
+      :success
+    end
+  end
+
 end
