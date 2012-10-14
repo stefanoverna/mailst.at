@@ -2,7 +2,6 @@
   section#main-header
     h1= t "mailbox.folders.title"
     .actions
-      = link_to t("mailbox.folders.delete"), mailbox_path(@mailbox), method: :delete, confirm: t("mailbox.folders.delete_confirm"), class: "delete"
       = link_to t("mailbox.folders.change_mail_parameters"), edit_mailbox_path(@mailbox)
       = link_to t("mailbox.folders.refresh_imap"), refresh_folders_mailbox_path(@mailbox), remote: true, id: "refresh-folders", class: "refresh"
 
