@@ -2,18 +2,18 @@ en:
   home:
     please_vote: "Please take the time to vote us for the Rails Rumble 2012!"
     tagline: "Kill your inbox, raise your karma"
-    subtagline: "Mailstat helps you fix your email overload problems, infinite-loop searches, forgotten tasks and the consequent waste of time by enforcing good practices taken from the internet-famous Inbox Zero manifest"
+    subtagline: "Mailstat helps you fix your email overload problems, infinite-loop searches, forgotten tasks by enforcing good practices taken from the internet-famous Inbox Zero manifest"
     start_today: "Start today!"
     register_why: "Register to Mailstat, specify your inbox and \"to be done\" folders, and start receiving your report with the following content:"
-    
+
     highlight1:
       title: "Pro Tips"
       description: "Get one heroic uber pro tip directly from the Inbox Zero phylosophy archives"
-      
+
     highlight2:
       title: "High priority mails"
       description: "Have a quick overview of what communications require your attention (a.k.a. they're so OLD)"
-      
+
     highlight3:
       title: "Track your progress"
       description: "Get a daily infographic on how much work still remains to be done"
@@ -45,23 +45,23 @@ en:
       block2:
         title: "What we'll NOT do?"
         description: "We'll NEVER look into your mail content or attachements, we'll not store your emails, nor we'll use them in any way. If you're scared you can immediately delete your account. We'll delete EVERYTHING related to you."
-        
+
     folders:
       title: "Folder settings"
       folders:
         intro: "Start to get more out of your inbox while grasping some serious Inbox Zero concept. Understand how to effectively use the inbox and other \"defer\" folders. Go on, read with attention and open mind!"
-        
+
       inbox_folder:
         title: "Inbox setup"
         description: "Select your inbox between your mailbox folders:"
-        
+
       defer_folders:
         title: "Defer folders"
         description: "Select the folders that you use to procrastinate. For each defer folder, select the time within you need to answer and give a label if you want to."
-        
+
       morning_report:
         title: "Daily report"
         description: "Select your timezone and your preferred time to get the daily report. Decide also if you want to get email every day or less."
-        
+
   footer:
     copyright: "Made by weLaika for RailsRumble 2012"

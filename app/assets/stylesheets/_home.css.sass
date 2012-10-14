@@ -1,12 +1,48 @@
 #home
-  padding: 30px 0
   text-align: center
+  margin-bottom: 50px
+
+  .wrap
+    +wrap
+
+  .bar
+    background-color: #eee
+    padding: 30px 0
+    margin: 30px 0
+    +box-shadow(rgba(black, 0.2) 0 0px 2px inset)
+
+    ul
+      width: 900px
 
   .vote
-    +metro-button($darkgrey, ".")
+    background-color: lighten(#e4c655, 10%)
+    padding: 13px
 
-  h4.button
-    margin-bottom: 20px
+    a
+      color: darken(#e4c655, 40%)
+
+  .image-boxes
+    +clearfix
+
+    li
+      float: left
+      width: 33%
+
+      .image-box
+        padding: 0 15px
+
+        img
+          +box-shadow(rgba(black, 0.4) 0 2px 3px)
+
+        h4
+          font-size: 29px
+          margin-bottom: 28px
+          font-weight: 300
+
+        .description
+          margin-top: 15px
+          padding: 0px 15px
+
 
   .stepover
     width: $width
@@ -15,9 +51,19 @@
     height: 100px
 
   .signup
-    font-size: 48px !important
+    +metro-button($green, "U")
+    font-size: 35px
     color: #fff
-    +metro-button($darkgrey, "U")
+    font-weight: 300
+    padding: 20px 80px
+    text-align: center
+
+    &:before
+      position: static
+      padding-right: 10px
+      line-height: 18px
+      font-family: Entypo
+      font-size: 65px
 
   .window
     width: $width - 20

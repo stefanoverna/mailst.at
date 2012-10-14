@@ -4,11 +4,18 @@ footer#site-footer
   background-color: $azure
   color: white
   margin-top: 30px
-  
+
   .content
     +wrap
     text-align: center
-    
-    .routes
-      display: inline
-      margin: 0 5px
+    +clearfix
+
+    a
+      color: white
+      text-decoration: underline
+
+    .copy
+      float: left
+
+    .stuff
+      float: right
