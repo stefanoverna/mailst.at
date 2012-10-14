@@ -78,17 +78,16 @@ class Mailbox < ActiveRecord::Base
   def self.with_report_to_be_sent
     mailboxes = []
     now_utc = DateTime.now.utc
-    puts "Ora sono le #{now_utc.hour}"
+    puts "Ora sono le #{now_utc.hour} UTC"
     timezone_identifiers = Mailbox.select("DISTINCT(timezone)").map(&:timezone)
     timezone_identifiers.each do |timezone_identifier|
       timezone = TZInfo::Timezone.get(timezone_identifier)
       now_local = timezone.utc_to_local(now_utc)
       puts "In #{timezone_identifier} ora sono le #{now_local.hour}"
       mailboxes += Mailbox.where(
-        "last_report_sent_at IS NULL OR (timezone = ? AND report_time_hour <= ? AND last_report_sent_at < ?)",
+        "last_report_sent_at IS NULL OR (timezone = ? AND report_time_hour <= ? AND last_report_sent_at < DATE_SUB(NOW(), INTERVAL seconds_between_reports SECOND))",
         timezone_identifier,
-        now_local.hour,
-        max_seconds_to_process.ago
+        now_local.hour
       )
     end
     mailboxes
