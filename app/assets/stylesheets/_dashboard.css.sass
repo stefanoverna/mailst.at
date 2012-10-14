@@ -8,11 +8,13 @@
     .mailbox
       font-size: 20px
       line-height: 55px
-  .timestamp.alignright.button
-    width: 25%
-    position: absolute
+  .timestamp
+    position: absolute !important
     right: 0
-    background: $grey
+    +metro-button($grey, "D")
+  .edit
+    +metro-button($darkgrey, "j")
+
 
   .mailsquare-cont
     font-weight: bold
