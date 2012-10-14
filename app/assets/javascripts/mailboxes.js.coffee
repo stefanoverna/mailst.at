@@ -1,6 +1,14 @@
 #= require spin
 
 $ ->
+
+  $("[data-toggle-dom]").each ->
+    $(this).change(->
+      $("[data-toggable=#{$(this).data("toggle-dom")}]").toggle $(this).is(":checked")
+    ).change()
+
+  $("select").chosen()
+
   $("[data-check-mailbox-verification]").each ->
     id = $(this).data("check-mailbox-verification")
 

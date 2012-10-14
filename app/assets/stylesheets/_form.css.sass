@@ -9,16 +9,105 @@ form
 
   .input
     position: relative
-    margin-top: 4px
+    margin-top: 10px
 
-    label
+    &> label
       position: absolute
       top: 0
       left: 0
       width: 140px
-      line-height: 20px
+      line-height: 25px
 
-    textarea, input[type="text"], input[type="password"],
-    input[type="email"], input[type="number"], select
+    &> textarea,
+    &> input[type="text"],
+    &> input[type="password"],
+    &> input[type="email"],
+    &> input[type="number"],
+    &> select,
+    &> div
       margin-left: 150px
+      width: 300px
+
+    &> input[type="text"],
+    &> input[type="password"],
+    &> input[type="email"],
+    &> input[type="number"],
+      border: 1px solid #aaaaaa
+      +border-radius(4px)
+      padding: 4px 4px
+      width: 300px - 4px * 2
+      font-size: 13px
+      font-family: 'Open Sans', 'Helvetica', 'Arial'
+
+  &.edit_mailbox
+
+    fieldset
+      margin-bottom: 30px
+      padding-bottom: 30px
+      border-bottom: 2px solid #ccc
+
+      legend
+        font-size: 30px
+        margin-bottom: 20px
+
+    .fields
+      padding-bottom: 20px
+      position: relative
+
+      &:last-child
+        padding-bottom: 0
+
+      .remove_nested_fields
+        position: absolute
+        top: 10px
+        left: -80px
+        width: 60px
+        padding-right: 20px
+        display: none
+        line-height: 60px
+        font-family: "Entypo"
+        font-size: 100px
+        color: #df2515
+        text-decoration: none
+        text-align: right
+
+      &:hover .remove_nested_fields
+        display: block
+
+    .imap-name
+      +pie-clearfix
+
+      &> .input
+        float: left
+
+      &> .rename-folder
+        float: left
+        margin-left: 15px
+        font-size: 12px
+
+    .add
+      margin-top: 20px
+
+      .add_nested_fields
+        background-color: #645642
+        color: white
+        padding: 10px 20px
+        text-decoration: none
+        border-bottom: 3px solid darken(#645642, 20%)
+        display: inline-block
+        position: relative
+        padding-left: 20px + 25px
+
+        &:before
+          position: absolute
+          top: 0
+          bottom: 0
+          left: 8px
+          line-height: 36px
+          content: "Z "
+          font-family: Entypo
+          font-size: 52px
+
+    select.max_seconds_to_process
+      width: 120px
 

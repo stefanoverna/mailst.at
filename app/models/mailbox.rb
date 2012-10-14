@@ -94,7 +94,6 @@ class Mailbox < ActiveRecord::Base
   end
 
   def send_report!
-    MailboxDataFetcher.fetch_mailbox(self)
   end
 
 end

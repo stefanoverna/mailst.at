@@ -28,29 +28,30 @@ class ImapMailbox
 
   def folder_mail_summary(folder_name, older_than_time, options = {max_search: 100, max_fetch: 3})
     return {} unless connected?
-
+    result = {}
     begin
-      result = {messages_count: 0, old_messages_count: 0, old_mails: []}
-
       @imap_client.examine(folder_name)
-      result[:messages_count] = @imap_client.status(folder_name, ["MESSAGES"])["MESSAGES"]
+      result[:messages_count] = @imap_client.status(folder_name, ["UNSEEN", "MESSAGES"])["MESSAGES"]
 
-      email_ids = @imap_client.search("ALL")
+      if result[:messages_count] > 0
+        range = 1 .. [result[:messages_count], options[:max_search]].min
 
-      oldest_ids = email_ids.take(options[:max_search]).select do |email_id|
-        header = @imap_client.fetch(email_id, "BODY[HEADER.FIELDS (From To Subject Date)]")
-        mail = Mail.read_from_string(header.first.attr.values.first)
-        mail.date.utc < older_than_time.utc
-      end
-      result[:old_messages_count] = oldest_ids.count
+        oldest_mails = @imap_client.fetch(range, "BODY[HEADER.FIELDS (From To Subject Date)]").map do |header|
+            mail = Mail.read_from_string(header.attr.values.first)
+        end.select do |mail|
+            mail.date.utc < older_than_time.utc
+        end
 
-      result[:old_mails] = oldest_ids.take(options[:max_fetch]).map do |email_id|
-        header = @imap_client.fetch(email_id, "BODY[HEADER.FIELDS (From To Subject Date)]")
-        Mail.read_from_string(header.first.attr.values.first)
+        result[:old_messages_count] = oldest_mails.count
+        result[:old_messages] = oldest_mails.take(options[:max_fetch])
+      else
+        result[:old_messages_count] = 0
+        result[:old_messages] = []
       end
 
       result
-    rescue
+    rescue Exception => e
+      puts e.message
       {}
     end
   end
@@ -59,7 +60,8 @@ class ImapMailbox
     @imap_client = Net::IMAP.new(params[:host], params[:port], params[:encryption], nil, false)
     @imap_client.login(params[:username], params[:password])
     true
-  rescue
+  rescue Exception => e
+    puts e.message
     false
   end
 
@@ -73,6 +75,10 @@ class ImapMailbox
     rescue
       []
     end
+  end
+
+  def disconnect
+    @imap_client.disconnect if connected?
   end
 
 end

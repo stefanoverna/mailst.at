@@ -5,6 +5,8 @@ class Folder < ActiveRecord::Base
   validates_uniqueness_of :is_inbox, scope: [ :mailbox_id ], allow_blank: true
   validates_uniqueness_of :imap_name, scope: [ :mailbox_id ]
 
+  typed_serialize :last_snapshot, Hash
+
   class TimeToProcess < Struct.new(:title, :id)
   end
 

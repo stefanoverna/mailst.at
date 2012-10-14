@@ -21,6 +21,7 @@ gem 'tzinfo'
 gem 'daemons'
 gem 'activeadmin'
 gem 'activeadmin-wysihtml5', github: 'stefanoverna/activeadmin-wysihtml5'
+gem 'chosen-rails'
 
 group :assets do
   gem 'sass-rails'

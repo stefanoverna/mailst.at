@@ -1,9 +1,8 @@
-# Sample localization file for English. Add more files in this directory for other locales.
-# See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
-
 en:
-  simple_form:
-    labels:
-      mailbox:
-        folders:
-          max_seconds_to_process: "Timeout"
+  mailbox:
+    morning_report: "Morning report"
+    inbox_folder: "Inbox folder"
+    defer_folders: "Defer folders"
+    remove_folder: "Remove this folder"
+    add_a_defer_folder: "Add a new Defer folder"
+    rename_folder: "Rename?"
