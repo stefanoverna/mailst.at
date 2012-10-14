@@ -1,0 +1,39 @@
+<% if @mailbox.valid? %>
+
+  $("#to-be-refreshed, #refresh-folders").fadeOut(function() {
+    $(".loading").fadeIn(function() {
+      $spinner = $(".spinner")
+      if (!$spinner.data("spinner")) {
+        var spinner = new Spinner().spin($spinner.get(0))
+        $spinner.data("spinner", spinner)
+      }
+    });
+  });
+
+  var statusCheck = function(cb) {
+    $.ajax({
+      url: "<%= j mailbox_path(@mailbox) %>",
+      dataType: "json",
+      success: function (data) {
+        if (!data.mailbox.credentials_verified) {
+          after(3000, function() { statusCheck(cb); });
+        } else if (!data.mailbox.credentials_valid) {
+          alert("Credentials appear to be invalid! Please try again!");
+          $(".loading").hide(); $(".submission").show();
+        } else {
+          cb(data)
+        }
+      },
+      error: function() {
+        console.log("FOCK");
+      }
+    });
+  };
+
+  statusCheck(function(data) {
+    $("#ajax").replaceWith(data.mailbox.folders_form_partial);
+  });
+
+<% else %>
+  $("#ajax").replaceWith("<%= j render "connection_params_form", mailbox: @mailbox %>");
+<% end %>

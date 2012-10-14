@@ -2,13 +2,18 @@
 
 $ ->
 
-  $("[data-toggle-dom]").each ->
-    $(this).change(->
-      $("[data-toggable=#{$(this).data("toggle-dom")}]").toggle $(this).is(":checked")
-    ).change()
-
-  $("select:visible").chosen()
+  refreshPage = (context) ->
+    $("[data-toggle-dom]:visible", context).each ->
+      $(this).change(->
+        $(this).parents(".fields").find(".rename-folder").toggle $(this).is(":checked")
+      ).change()
+    $("select:visible", context).chosen()
 
   $(document).on 'nested:fieldAdded', (event) ->
-    $("select", event.field).chosen()
+    refreshPage(event.field)
+
+  $(document).on 'ajaxSend', (event) ->
+    refreshPage(document)
+
+  refreshPage(document)
 

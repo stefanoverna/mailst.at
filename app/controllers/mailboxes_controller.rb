@@ -4,7 +4,7 @@ class MailboxesController < ApplicationController
 
   respond_to :html
   respond_to :json, only: :show
-  respond_to :js, only: [ :create, :update ]
+  respond_to :js, only: [ :create, :update, :refresh_folders ]
 
   def create
     @mailbox = Mailbox.new(params[:mailbox])
@@ -16,10 +16,17 @@ class MailboxesController < ApplicationController
     respond_with @mailbox
   end
 
+  def refresh_folders
+    @mailbox = Mailbox.find(params[:id])
+    @mailbox.folders.destroy_all
+    @mailbox.latest_completed_check_job.try(:destroy)
+    CheckMailboxJob.create(@mailbox)
+  end
+
   def update
     @mailbox = Mailbox.find(params[:id])
     @mailbox.update_attributes(params[:mailbox])
-    if @mailbox.valid?
+    if params[:mailbox][:host]
       @mailbox.latest_completed_check_job.try(:destroy)
       CheckMailboxJob.create(@mailbox)
     end

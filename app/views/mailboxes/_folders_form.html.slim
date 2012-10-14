@@ -1,47 +1,59 @@
-.intro= t "mailbox.folders.folders.intro"
+#ajax
+  section#main-header
+    h1= t "mailbox.folders.title"
+    .actions
+      = link_to t("mailbox.folders.change_mail_parameters"), edit_mailbox_path(@mailbox)
+      = link_to t("mailbox.folders.refresh_imap"), refresh_folders_mailbox_path(@mailbox), remote: true, id: "refresh-folders"
 
-.mailbox-form#folders-form
-  = simple_nested_form_for mailbox do |f|
+  .loading
+    .spinner
+    | IMAP folders refresh in progress. Please wait.
 
-    = form_error_messages(f, mailbox)
+  #to-be-refreshed
+    .intro= t "mailbox.folders.folders.intro"
+    .
+    .mailbox-form#folders-form
+      = simple_nested_form_for mailbox do |f|
 
-    - if @mailbox.credentials_valid?
+        = form_error_messages(f, mailbox)
 
-      - @mailbox.build_inbox_folder_if_missing
+        - if @mailbox.credentials_valid?
 
-      = field_set_tag t("mailbox.folders.inbox_folder.title"), class: "inbox-folder" do
-        .intro= t("mailbox.folders.inbox_folder.description")
+          - @mailbox.build_inbox_folder_if_missing
 
-        = f.simple_fields_for :folders, @mailbox.inbox_folder do |ff|
-          = ff.input :imap_name, collection: ff.object.available_imap_folders(@mailbox), include_blank: false
-          = ff.input :max_seconds_to_process, as: :hidden
-          = ff.input :is_inbox, as: :hidden
+          = field_set_tag t("mailbox.folders.inbox_folder.title"), class: "inbox-folder" do
+            .intro= t("mailbox.folders.inbox_folder.description")
 
-      = field_set_tag t("mailbox.folders.defer_folders.title"), class: "defer-folders" do
-        .intro= t("mailbox.folders.defer_folders.description")
+            = f.simple_fields_for :folders, @mailbox.inbox_folder do |ff|
+              = ff.input :imap_name, collection: ff.object.available_imap_folders(@mailbox), include_blank: false
+              = ff.input :max_seconds_to_process, as: :hidden
+              = ff.input :is_inbox, as: :hidden
 
-        = f.simple_fields_for :folders, @mailbox.defer_folders do |ff|
-          .imap-name
-            = ff.input :imap_name, collection: ff.object.available_imap_folders(@mailbox), include_blank: false
-            .rename-folder-check
-              = label_tag :"rename_#{ff.object.id}" do
-                =' check_box_tag :"rename_#{ff.object.id}", "1", ff.object.label.present?, data: { toggle_dom: "toggable_#{ff.object.id}" }
-                =' t("mailbox.folders.rename_folder")
+          = field_set_tag t("mailbox.folders.defer_folders.title"), class: "defer-folders" do
+            .intro= t("mailbox.folders.defer_folders.description")
 
-          .rename-folder data-toggable="toggable_#{ff.object.id}"
-            = ff.input :label
+            = f.simple_fields_for :folders, @mailbox.defer_folders do |ff|
+              .imap-name
+                = ff.input :imap_name, collection: ff.object.available_imap_folders(@mailbox), include_blank: false
+                .rename-folder-check
+                  = label_tag :"rename_#{ff.object.id}" do
+                    =' check_box_tag :"rename_#{ff.object.id}", "1", ff.object.label.present?, data: { toggle_dom: true }
+                    =' t("mailbox.folders.rename_folder")
 
-          = ff.input :max_seconds_to_process, collection: Folder.allowed_times_to_process, include_blank: false, input_html: { class: "max_seconds_to_process" }
+              .rename-folder
+                = ff.input :label
 
-          = ff.link_to_remove "[", class: "remove_nested_fields"
+              = ff.input :max_seconds_to_process, collection: Folder.allowed_times_to_process, include_blank: false, input_html: { class: "max_seconds_to_process" }
 
-        = f.link_to_add t("mailbox.folders.add_a_defer_folder"), :folders
+              = ff.link_to_remove "[", class: "remove_nested_fields"
 
-      = field_set_tag t("mailbox.folders.morning_report.title"), class: "morning-report" do
-        .intro= t("mailbox.folders.morning_report.description")
+            = f.link_to_add t("mailbox.folders.add_a_defer_folder"), :folders
 
-        = f.input :timezone, collection: timezones_collection, as: :grouped_select, group_method: :last, include_blank: false
-        = f.input :report_time_hour, collection: hours_collection, include_blank: false
+          = field_set_tag t("mailbox.folders.morning_report.title"), class: "morning-report" do
+            .intro= t("mailbox.folders.morning_report.description")
 
-    footer
-      = f.button :submit
+            = f.input :timezone, collection: timezones_collection, as: :grouped_select, group_method: :last, include_blank: false
+            = f.input :report_time_hour, collection: hours_collection, include_blank: false
+
+        footer
+          = f.button :submit
