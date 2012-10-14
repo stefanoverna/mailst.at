@@ -7,7 +7,7 @@ $ ->
       $("[data-toggable=#{$(this).data("toggle-dom")}]").toggle $(this).is(":checked")
     ).change()
 
-  $("select").chosen()
+  $("select:visible").chosen()
 
   $("[data-check-mailbox-verification]").each ->
     id = $(this).data("check-mailbox-verification")
@@ -28,3 +28,7 @@ $ ->
           console.log "FOCK"
 
     statusCheck -> document.location.reload(true)
+
+  $(document).on 'nested:fieldAdded', (event) ->
+    $("select", event.field).chosen()
+
