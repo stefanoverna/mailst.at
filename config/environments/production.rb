@@ -53,7 +53,7 @@ Mailstat::Application.configure do
     :address   => "smtp.mandrillapp.com",
     :port      => 587,
     :user_name => "info@welaika.com",
-    :password  => "478bbc6f-28e6-4eea-8d58-4d5d439df97f"
+    :password  => "d24e09fe-f1c7-4ce3-92f2-cd6a428b45bc"
   }
   config.action_mailer.perform_deliveries = true
   config.action_mailer.raise_delivery_errors = false
