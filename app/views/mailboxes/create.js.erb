@@ -31,8 +31,8 @@
     });
   };
 
-  statusCheck(function() {
-    $("#ajax").replaceWith("<%= j render "folders_form", mailbox: @mailbox %>");
+  statusCheck(function(data) {
+    $("#ajax").replaceWith(data.mailbox.folders_form_partial);
   });
 
 <% else %>

@@ -1,0 +1,11 @@
+{
+  "mailbox": {
+    "credentials_valid": <%= @mailbox.credentials_valid? %>,
+    "credentials_verified": <%= @mailbox.credentials_verified? %>,
+    "folders_form_partial": <% if @mailbox.credentials_valid? %>
+                                 "<%= j render "folders_form.html.slim", mailbox: @mailbox %>"
+                                 <% else %>
+                                 ""
+                                 <% end %>
+  }
+}
