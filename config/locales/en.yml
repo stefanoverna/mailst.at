@@ -7,6 +7,21 @@ en:
     login: "Login"
     logout: "Logout"
   
+  signup:
+    block0:
+      title: "No frills"
+      description: "Essential webservice to help you stay on track with your mailbox and train to Inbox Zero technique."
+  
+    block1:
+      title: "Less data as possible"
+      description: "We'll never download your mail content nor attachments. We'll store only statistic data or email headers."
+      
+    block2:
+      title: "Daily report"
+      description: "Daily receive a mail report with a carefully crafted Pro Tip from Internet recognized mail masters."
+      
+    privacy: "Registering to this site you agree our privacy policy"
+  
   home:
     please_vote: "Please take the time to vote us for the Rails Rumble 2012!"
     tagline: "Kill your inbox, raise your karma"
@@ -30,6 +45,8 @@ en:
     title: "Dashboard"
     more_mailbox: "More mailboxes to manage?"
     add_new: "Add a new account"
+    no_mailboxes: "You don't have any mailbox set up"
+    add_first_mailbox: "Add your first mailbox"
 
   mailbox:
     add_new_title: "Add a new mailbox"
