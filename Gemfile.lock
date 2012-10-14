@@ -47,6 +47,7 @@ GEM
     activesupport (3.2.8)
       i18n (~> 0.6)
       multi_json (~> 1.0)
+    addressable (2.3.2)
     airbrake (3.1.5)
       builder
       girl_friday
@@ -85,6 +86,9 @@ GEM
     copycopter_client (2.0.1)
       i18n (>= 0.5.0)
       json
+    css_parser (1.2.6)
+      addressable
+      rdoc
     daemons (1.1.9)
     delayed_job (3.0.3)
       activesupport (~> 3.0)
@@ -145,6 +149,7 @@ GEM
       jruby-pageant (>= 1.1.1)
     net-ssh-gateway (1.1.0)
       net-ssh (>= 1.99.1)
+    nokogiri (1.5.5)
     orm_adapter (0.4.0)
     polyamorous (0.5.0)
       activerecord (~> 3.0)
@@ -179,6 +184,11 @@ GEM
       json (~> 1.4)
     responders (0.9.3)
       railties (~> 3.1)
+    roadie (2.3.2)
+      actionmailer (> 3.0.0, < 3.3.0)
+      css_parser
+      nokogiri (>= 1.4.4)
+      sprockets
     sass (3.2.1)
     sass-rails (3.2.5)
       railties (~> 3.2.0)
@@ -244,6 +254,7 @@ DEPENDENCIES
   rabl
   rails (= 3.2.8)
   responders
+  roadie
   sass-rails
   sextant
   simple_form

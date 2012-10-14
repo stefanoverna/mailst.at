@@ -95,6 +95,7 @@ class Mailbox < ActiveRecord::Base
   end
 
   def send_report!
+    ReportMailer.send_daily_summary(self).deliver
   end
 
 end
