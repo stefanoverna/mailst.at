@@ -1,202 +1,69 @@
-sass:
-  $green: #7D9D2F
-  $yellow: #FF8F30
-  $red: #FF0029
-  $grey: #CDD0CB
-  $darkgrey: #8B8683
-  $azure: #26ADE4
-  $light-azure: #d5e6ed
-
-  #content
-    font-family: 'Trebuchet MS', Tahoma, Arial
-    width: 740px
-    margin: 0 auto
-
-    h1
-      margin-bottom: 0
-      font-size: 50px
-      border-bottom: 2px solid #ccc
-      color: #555
-
-    #mailbox-report
-      table.header
-        width: 100%
-        border-bottom: 2px solid #ccc
-
-        .welcome
-          text-align: left
-
-          h3
-            margin-bottom: 0
-            font-size: 20px
-            color: #555
-
-        .timestamp
-          text-align: right
-          font-size: 14px
-          font-weight: bold
-
-      .link-to-site
-        margin-top: 10px
-
-        a
-          text-align: center
-          display: block
-          width: 300px
-          margin: 0 auto
-          padding: 8px 20px
-          color: white
-          background-color: $green
-          border-bottom: 2px solid darken($green, 20%)
-          text-decoration: none
-
-      .at-a-glance
-        margin-bottom: 40px
-
-        h3
-          font-size: 30px
-          font-weight: 300
-          line-height: 35px
-          border-bottom: 2px solid #ccc
-          color: #555
-
-        table
-          width: 100%
-
-          tr
-            margin-bottom: 5px
-            background-color: #eee
-            font-size: 20px
-            line-height: 40px
-
-            .label
-              text-align: left
-              padding-left: 15px
-              width: 300px
-
-            .total, .overdue
-              color: white
-              text-align: center
-
-            .overdue
-              width: 54px
-
-            .total
-              width: 60px
-
-            &.success
-              .total
-                background-color: $green
-              .overdue
-                background-color: $green
-
-            &.failure
-              .total
-                background-color: $red
-              .overdue
-                background-color: $red
-
-            &.warning
-              .total
-                background-color: $yellow
-              .overdue
-                background-color: $yellow
-
-
-      .tip-of-the-day
-        background-color: #eee
-        border-top: 2px solid #555
-        border-bottom: 2px solid #555
-        padding: 30px
-
-        h4
-          font-size: 15px
-          color: #444
-          font-weight: bold
-
-        h3
-          font-size: 20px
-          color: #222
-          margin-bottom: 3px
-
-        .description
-          line-height: 19px
-          font-size: 18px
-          color: #444
-
-      .folder
-        margin-bottom: 30px
-
-        table
-          width: 100%
-
-          tr
-            margin-bottom: 5px
-            background-color: $light-azure
-
-            td
-              border-bottom: 1px solid darken($azure, 15%)
-              padding: 7px 9px
-              vertical-align: top
-
-              &.old
-                width: 130px
-                text-align: center
-
-              &.from
-                text-align: center
-
-    #footer
-      font-size: 12px
-      color: #333
-      margin: 0 auto
+= render "report_mailer/stylesheet"
 
 #content
-  h1 #{@mailbox.label} Report
+  .padded
+    #read-on-website
+      ' This email not displaying correctly?
+      = link_to "Just click here!", mail_mailbox_url(@mailbox, :protocol => 'https')
 
-  #mailbox-report
-    table.header
+    table#mail-header
       tr
-        td.welcome
-          h3 Good morning, #{@mailbox.user.first_name}!
-        td.timestamp
-          '✉
-          =l(@mailbox.last_mailbox_fetch_at, format: :short)
+        td align="left"
+          table
+            tr
+              td.mailstat Mailstat
+              td.greeting= greet(@mailbox)
+        td align="right"
+          table
+            tr
+              td.icon= table_image("report/photo.png")
+              td.timestamp Snapshot taken at #{report_sent_time(@mailbox)}
 
-    .link-to-site= link_to "Read this email on our website", mailbox_url(@mailbox, :protocol => 'https')
-
-    .block.at-a-glance
+    #at-a-glance
       h3 Your mailbox, at a glance
       table
+        tr.legend
+          td
+          td Overdue
+          td Total
         - @mailbox.sorted_folders.each do |folder|
-          tr class=folder.status class=("inbox" if folder.is_inbox)
-            td.label= folder.nice_name
+          tr.folder class=folder.status
+            td.label
+              table: tr
+                td width=32
+                  - if folder.is_inbox
+                    = table_image("report/inbox.png", 0xeeeeeeff)
+                  - else
+                    = table_image("report/folder.png", 0xeeeeeeff)
+                td.name= folder.nice_name
             - overdue_text = folder.overdue_messages_count >= 100 ? "+100" : folder.overdue_messages_count.to_s
             td.overdue= overdue_text
             td.total= folder.total_messages_count
 
-    - tip = Tip.random
-    - if tip.present?
-      .block.tip-of-the-day
-        h4 Pro-tip of the day
-        h3= link_to tip.title, tip.citation
-        .description== tip.description
+  - tip = Tip.random
+  - if tip.present?
+    #tip-of-the-day
+      table: tr
+        td= table_image("report/tip.png", 0xeeeeeeff)
+        td.name Pro-tip of the day
+      h3= link_to tip.title, tip.citation
+      .description== tip.description
 
-    - @mailbox.sorted_folders.each do |folder|
-      - if folder.priority_messages.any?
-        .folder class=folder.status class=("inbox" if folder.is_inbox)
-          h3= folder.nice_name
+  .padded
+    table#folder-details
+      - @mailbox.sorted_folders.each do |folder|
+        - if folder.priority_messages.any? || folder.suggestion.present?
+          tr: th.folder-name colspan=3
+            = folder.nice_name
           - if folder.suggestion.present?
-            .suggestion= folder.suggestion.description
-          table
-            - folder.priority_messages.each do |message|
-              tr
-                td.from= message.from
-                td.subject= truncate(message.subject, length: 50, separator: " ")
-                td.old #{time_ago_in_words(message.date)} ago
+            tr: td.suggestion colspan=3
+              .inner= folder.suggestion.description
+          - folder.priority_messages.each do |message|
+            tr
+              td.from= auto_link message.from
+              td.subject= auto_link truncate(message.subject, length: 100, separator: " ")
+              td.old #{time_ago_in_words(message.date)} ago
 
   #footer
-    = "Made by "
+    ' Made with ♥ by
     a href="http://welaika.com" weLaika
-    = " for "
-    a href="http://railsrumble.com/entries/32-welaika-2" RailsRumble 2012

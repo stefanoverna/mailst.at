@@ -26,6 +26,12 @@ class MailboxesController < ApplicationController
     CheckMailboxJob.create(@mailbox)
   end
 
+  def send_report
+    @mailbox = Mailbox.find(params[:id])
+    SendReportJob.create(@mailbox)
+    redirect_to @mailbox, notice: "Your report will arrive at your inbox as soon as possible!"
+  end
+
   def update
     @mailbox = Mailbox.find(params[:id])
     @mailbox.update_attributes(params[:mailbox])
@@ -35,6 +41,11 @@ class MailboxesController < ApplicationController
       CheckMailboxJob.create(@mailbox)
     end
     respond_with @mailbox
+  end
+
+  def mail
+    @mailbox = Mailbox.find(params[:id])
+    render "report_mailer/send_daily_summary", layout: false
   end
 
   protected

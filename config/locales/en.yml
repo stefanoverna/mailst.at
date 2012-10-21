@@ -6,22 +6,22 @@ en:
     signup: "Signup"
     login: "Login"
     logout: "Logout"
-  
+
   signup:
     block0:
       title: "No frills"
       description: "Essential webservice to help you stay on track with your mailbox and train to Inbox Zero technique."
-  
+
     block1:
       title: "Less data as possible"
       description: "We'll never download your mail content nor attachments. We'll store only statistic data or email headers."
-      
+
     block2:
       title: "Daily report"
       description: "Daily receive a mail report with a carefully crafted Pro Tip from Internet recognized mail masters."
-      
+
     privacy: "Registering to this site you agree our privacy policy"
-  
+
   home:
     please_vote: "Please take the time to vote us for the Rails Rumble 2012!"
     tagline: "Kill your inbox, raise your karma"
@@ -108,7 +108,9 @@ en:
       good_morning: "Good morning, %{username}!"
       protip: "Pro-tip of the day"
       time_ago: "%{time} ago"
-      first_report: "Your first Morning Report will arrive at your inbox in %{time}!"
+      first_report: "Your first report will arrive at your inbox in %{time}!"
+      next_report: "Your next report will arrive at your inbox in %{time}!"
+      send_now: "Can't wait? We can send it right now."
       folder0: "Excellent job! Consider getting the daily report less frequently, if you feel confident."
       folder1: "Your folder it's very good! Keep up the good work! Try to concentrate the time you spend on your email to reach true inbox zero."
       folder2: "Warning, you have someone waiting for your answers. Don't worry though in a couple of concentrated hours you'll be back on track!"

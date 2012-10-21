@@ -20,7 +20,7 @@ module MailboxesHelper
       time_zones.each do |time_zone|
         continent, city = time_zone.friendly_identifier.split(" - ")
         timezone = TimeZone.new(continent,
-          "#{city} (UTC/GMT #{offset})",
+          "#{city} (UTC #{offset})",
           time_zone.identifier
         )
         time_zones_sorted_by_utc_offset << timezone

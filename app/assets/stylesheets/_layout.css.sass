@@ -28,6 +28,23 @@ a
 .alert-flash
   background-color: $red
 
+.small-info-panel
+  background-color: #eee
+  padding: 20px 0
+  color: #444
+  text-align: center
+  width: 742px
+  margin: 0 auto
+
+  h3
+    font-size: 20px
+
+  h3:last-child
+    margin-bottom: 0
+
+  a
+    +metro-button($green, "Z")
+
 .info-panel
   background-color: #eee
   width: 500px
@@ -35,6 +52,9 @@ a
   color: #444
   margin: 0 auto
   text-align: center
+
+  h3:last-child
+    margin-bottom: 0
 
   a
     +metro-button($green, "Z")

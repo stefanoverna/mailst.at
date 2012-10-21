@@ -1,8 +1,9 @@
 class ReportMailer < ActionMailer::Base
-  default from: "noreply@mailst.at"
+  default from: "Mailstat <noreply@mailst.at>"
 
   def send_daily_summary(mailbox)
     @mailbox = mailbox
-    mail(to: @mailbox.user.email, subject: "Mailstat - Daily summary")
+    mailbox.report_sent_now!
+    mail(to: mailbox.user.email, subject: "#{mailbox.label.titleize} mailbox summary")
   end
 end

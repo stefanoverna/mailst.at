@@ -7,6 +7,8 @@ Mailstat::Application.routes.draw do
   resources :mailboxes do
     member do
       get :refresh_folders
+      get :mail
+      get :send_report
     end
   end
   match "/dashboard" => "static#dashboard"

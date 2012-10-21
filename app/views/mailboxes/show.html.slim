@@ -4,6 +4,11 @@ header#main-header
     = link_to t("mailbox.report.mail_settings"), edit_mailbox_path(@mailbox, folders: true)
 
 - if @mailbox.last_mailbox_fetch_at
+
+  .small-info-panel
+    h3= t("mailbox.report.next_report", time: time_ago_in_words(@mailbox.next_report_time))
+    = link_to t("mailbox.report.send_now"), send_report_mailbox_path(@mailbox)
+
   section#mailbox-report
     .inner
 
@@ -42,6 +47,7 @@ header#main-header
 - elsif @mailbox.credentials_valid? && @mailbox.has_report_infos?
   .info-panel
     h3 =t("mailbox.report.first_report", time: time_ago_in_words(@mailbox.next_report_time))
+    = link_to t("mailbox.report.send_now"), send_report_mailbox_path(@mailbox)
 - else
   .info-panel
     h3 =t("mailbox.report.invalid_mailbox")

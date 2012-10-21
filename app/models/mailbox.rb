@@ -8,11 +8,11 @@ class Mailbox < ActiveRecord::Base
   validates_presence_of :label, :encryption, :host, :password, :port, :username, :user
   validates_numericality_of :port
 
-  validates_inclusion_of :timezone, in: TZInfo::Timezone.all_country_zone_identifiers, if: :credentials_valid?
   validates_presence_of :report_time_hour, if: :credentials_valid?
   validates_presence_of :seconds_between_reports, if: :credentials_valid?
 
   validates :folders, :folder_uniqueness => true
+  validate :timezone_exists
 
   class Encryption < Struct.new(:title, :id)
   end
@@ -94,7 +94,6 @@ class Mailbox < ActiveRecord::Base
   def self.with_report_to_be_sent
     mailboxes = []
     now_utc = DateTime.now.utc
-    puts "Ora sono le #{now_utc.hour} UTC"
     timezone_identifiers = Mailbox.select("DISTINCT(timezone)").map(&:timezone)
     timezone_identifiers.select(&:present?).each do |timezone_identifier|
       timezone = TZInfo::Timezone.get(timezone_identifier)
@@ -106,11 +105,11 @@ class Mailbox < ActiveRecord::Base
         now_local.hour
       )
     end
-    mailboxes
+    mailboxes.uniq
   end
 
-  def send_report!
-    ReportMailer.send_daily_summary(self).deliver
+  def report_sent_now!
+    update_attribute(:last_report_sent_at, Time.now)
   end
 
   def sorted_folders
@@ -151,7 +150,7 @@ class Mailbox < ActiveRecord::Base
     if average_status > 0.7
       :success
     elsif average_status < 0.7
-      :falure
+      :failure
     else
       :warning
     end
@@ -162,6 +161,14 @@ class Mailbox < ActiveRecord::Base
 
   def has_report_infos?
     self.timezone && self.report_time_hour && self.seconds_between_reports
+  end
+
+  private
+
+  def timezone_exists
+    unless ActiveSupport::TimeZone[self.timezone].present?
+      self.errors.add(:timezone, "not valid")
+    end
   end
 
 end
