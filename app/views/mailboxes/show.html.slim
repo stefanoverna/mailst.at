@@ -6,7 +6,7 @@ header#main-header
 - if @mailbox.last_mailbox_fetch_at
 
   .small-info-panel
-    h3= t("mailbox.report.next_report", time: time_ago_in_words(@mailbox.next_report_time))
+    h3= t("mailbox.report.next_report", time: time_ago_in_words(@mailbox.report_sending_time))
     = link_to t("mailbox.report.send_now"), send_report_mailbox_path(@mailbox)
 
   section#mailbox-report
@@ -46,7 +46,7 @@ header#main-header
                 td.old =t("mailbox.report.time_ago", time: time_ago_in_words(message.date))
 - elsif @mailbox.credentials_valid? && @mailbox.has_report_infos?
   .info-panel
-    h3 =t("mailbox.report.first_report", time: time_ago_in_words(@mailbox.next_report_time))
+    h3 =t("mailbox.report.first_report", time: time_ago_in_words(@mailbox.report_sending_time))
     = link_to t("mailbox.report.send_now"), send_report_mailbox_path(@mailbox)
 - else
   .info-panel
