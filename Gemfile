@@ -25,6 +25,7 @@ gem 'roadie'
 gem 'whenever'
 gem 'redcarpet'
 gem 'rails_autolink'
+gem 'chunky_png'
 
 group :assets do
   gem 'sass-rails'

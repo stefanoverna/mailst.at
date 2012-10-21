@@ -299,6 +299,7 @@ DEPENDENCIES
   capistrano
   capybara
   chosen-rails
+  chunky_png
   coffee-rails
   compass-rails
   copycopter_client

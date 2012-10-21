@@ -116,18 +116,8 @@ class Mailbox < ActiveRecord::Base
     ([ inbox_folder ] + defer_folders).compact
   end
 
-  def next_report_time
-    tzinfo = TZInfo::Timezone.get(timezone)
-    now_utc = DateTime.now.utc
-    now_local = tzinfo.utc_to_local(now_utc)
-    time = Time.utc(now_local.year, now_local.month, now_local.day, report_time_hour).to_datetime
-    offset = sprintf("%+4d", tzinfo.current_period.utc_offset / 3600)
-    time = time.change(:offset => offset)
-    if time < DateTime.now
-      time + 1.day
-    else
-      time
-    end
+  def report_sending_time
+    ReportsSender.report_sending_time(self)
   end
 
   def average_status

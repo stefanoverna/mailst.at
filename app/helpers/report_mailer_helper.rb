@@ -1,3 +1,5 @@
+require 'chunky_png'
+
 module ReportMailerHelper
 
   def table_image(asset, bgc = 0xffffffff)
