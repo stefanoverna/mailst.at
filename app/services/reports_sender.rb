@@ -20,7 +20,7 @@ class ReportsSender
     mailboxes.each do |mailbox|
       begin
         MailboxDataFetcher.fetch_mailbox(mailbox)
-        ReportMailer.send_daily_summary(self).deliver
+        ReportMailer.send_daily_summary(mailbox).deliver
       rescue Exception => e
         puts "fallito invio a #{mailbox.username}:\t#{e.class} - #{e.message}"
         puts e.backtrace.join("\n")
