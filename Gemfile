@@ -34,6 +34,7 @@ group :assets do
   gem 'coffee-rails'
   gem 'compass-rails'
   gem 'uglifier'
+  gem 'turbo-sprockets-rails3'
 end
 
 group :production do

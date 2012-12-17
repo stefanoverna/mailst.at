@@ -300,6 +300,9 @@ GEM
     treetop (1.4.11)
       polyglot
       polyglot (>= 0.3.1)
+    turbo-sprockets-rails3 (0.2.12)
+      railties (>= 3.1.0, < 3.2.9)
+      sprockets (>= 2.0.0)
     typed_serialize (1.0.0)
       activerecord
     tzinfo (0.3.33)
@@ -362,6 +365,7 @@ DEPENDENCIES
   slim-rails
   sqlite3
   timecop
+  turbo-sprockets-rails3
   typed_serialize
   uglifier
   whenever
