@@ -11,8 +11,8 @@ class Mailbox < ActiveRecord::Base
   validates_presence_of :report_time_hour, if: :credentials_valid?
   validates_presence_of :seconds_between_reports, if: :credentials_valid?
 
-  validates :folders, :folder_uniqueness => true
-  validate :timezone_exists
+  validates :folders, folder_uniqueness: true
+  validate :timezone_exists, if: :credentials_valid?
 
   class Encryption < Struct.new(:title, :id)
   end

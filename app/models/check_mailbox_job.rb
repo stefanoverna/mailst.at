@@ -10,6 +10,7 @@ class CheckMailboxJob < Job
         self.result[:folders] = box.folders
         log "mail valid! #{box.folders.inspect}"
       else
+        mailbox.destroy
         log "mail invalid!"
       end
     end
