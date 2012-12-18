@@ -28,6 +28,7 @@ gem 'whenever'
 gem 'redcarpet'
 gem 'rails_autolink'
 gem 'chunky_png'
+gem "workless", "~> 1.1.1"
 
 group :assets do
   gem 'sass-rails'
@@ -35,10 +36,6 @@ group :assets do
   gem 'compass-rails'
   gem 'uglifier'
   gem 'turbo-sprockets-rails3'
-end
-
-group :production do
-  gem "workless", "~> 1.1.1"
 end
 
 gem 'jquery-rails'

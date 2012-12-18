@@ -100,7 +100,7 @@ class Mailbox < ActiveRecord::Base
       now_local = timezone.utc_to_local(now_utc)
       puts "In #{timezone_identifier} ora sono le #{now_local.hour}"
       mailboxes += Mailbox.where(
-        "last_report_sent_at IS NULL OR (timezone = ? AND report_time_hour <= ? AND last_report_sent_at < DATE_SUB(NOW(), INTERVAL seconds_between_reports SECOND))",
+        "last_report_sent_at IS NULL OR (timezone = ? AND report_time_hour <= ? AND last_report_sent_at < (NOW() - (seconds_between_reports * '1 second'::interval)))",
         timezone_identifier,
         now_local.hour
       )
